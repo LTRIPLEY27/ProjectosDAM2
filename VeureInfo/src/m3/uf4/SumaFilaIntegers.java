@@ -23,11 +23,11 @@ public class SumaFilaIntegers {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Ingrese numeros : ");
 		int num = sc.nextInt();
-		System.out.println("La suma de los numeros es : " + square(num));
+		System.out.println("La suma de los numeros es : " + suma(num));
 	}
-	public static int square(int num) 
+	public static int suma(int num) 
 	{
-		return num * num;
+		return num + num;
 	}
 
 
