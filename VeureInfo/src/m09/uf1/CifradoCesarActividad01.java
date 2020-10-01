@@ -4,7 +4,18 @@ import java.util.Scanner;
 
 public class CifradoCesarActividad01 {
 
-	static void 
+	 static String [] codificacion (String [] alfabeto, int numero) {
+		 Scanner teclat = new Scanner (System.in);
+		 String [] modificar;
+		 int num = numero;
+		 modificar = alfabeto;
+		 
+		 for (int i=0; i<alfabeto.length; i++) {
+			 modificar[i] = [num];
+			 
+		 }
+		 
+	 }
 	public static void main(String[] args) {
 /*
  * Activitat 1
@@ -26,14 +37,14 @@ Feu un tercer programa que descodifiqui entrades utilitzant la «força bruta». El
 		Scanner teclat = new Scanner (System.in);
 		
 		int numero;
-		String [] alfabeto;
+		//String [] alfabeto;
 		
-		System.out.println("ingrese la letra a cifrar  ");
+		System.out.println("ingrese las posiciones que desea  cifrar  ");
 		numero = teclat.nextInt();
 		
 		
 		
-		alfabeto [] = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y","z"} ;
+		 String [] alfabeto  = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y","z"} ;
 		//llenadoMatriz
 		
 	}
