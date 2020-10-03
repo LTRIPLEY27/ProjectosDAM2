@@ -16,8 +16,7 @@ public class Actividad01PowerOfNumber {
 		float num1;    // declaracion del valor del parametro a convertir
 		int n;      // parametro a calcular (n poencia)
 		int x=0;      // variable contador del while
-		float suma =  00 ;    // variable almacenadora del condicionl
-		float total= 00;
+		float aux = 1;  // variable auxiliar para llevar el control del float base
 		boolean comprobar;    // condicional a verificar el bloque de instrucciones del programa
 		
 		System.out.println("ingrese el valor a calcular : ");
@@ -29,15 +28,14 @@ public class Actividad01PowerOfNumber {
 		if (n>0) {    // condicional evaluador (si n es mayor a 0 "numero positivo", entonces comprobar es true
 			comprobar = true;
 			x=0;    // contador es cero
-				while (true&& x<=n) {   // mientras el condicional del numero positivo es "true" y el contador sea menor a la potencia a calcular
+				while (true&& x<n) {   // mientras el condicional del numero positivo es "true" y el contador sea menor a la potencia a calcular
 					//num1 = num1 * num1;
-					suma = num1 * num1;  // suma es igual a numero * numero
-					total = suma * num1; // total es igual al resultado de la suma por el numero
+					aux = aux * num1;  // aux es igual a 1 * numero mientras el contador del while sea menor a la potencia
 					x++;   // contador incrementa hasta llegar a false y romper el ciclo
 				}
-				System.out.println(total);  // total (numero a la potencia)
+				System.out.println(aux);  // total (numero a la potencia)
 		}
-		else {  // en caso de no ser un numero positivo
+		else {  // en caso de no ser un numero positivo no entra al bloque del while pues no es un numero positivo
 				System.out.println(" la potencia no es un numero positivo");  // identificar que no es un positivo y por ende se cierra el ciclo
 				}
 		
