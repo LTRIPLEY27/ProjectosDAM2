@@ -37,19 +37,27 @@ Feu un tercer programa que descodifiqui entrades utilitzant la «força bruta». El
 		Scanner teclat = new Scanner (System.in);
 		
 		int numero;
-		//String [] alfabeto;
+		char aux;
+		//String g;
 		
-		System.out.println("ingrese las posiciones que desea  cifrar  ");
+		
+		System.out.println("ingrese las posiciones que desea  cifrar:  ");
 		numero = teclat.nextInt();
 		
 		
 		
-		 String [] alfabeto  = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y","z"} ;
-		//llenadoMatriz
-		 
-		 
-		 // intentar con char para optimizar mejor
+		char [] alfabeto  = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y','z'} ;
+		//String[] alfabeto  = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y","z"} ;
 		
+		
+		 //llenadoArray	
+		for (int i=0; i<alfabeto.length-1; i++) {
+		 }
+		System.out.println("la letra a cifrar en el alfabeto es : "  + alfabeto[numero-1]);
+		aux = alfabeto[numero-1];
+			for (int i=0; i<alfabeto.length-1; i++) {				
+		}
+			System.out.println("la letra cifrada sería " + alfabeto[numero+numero-1]);
 	}
-
 }
+
