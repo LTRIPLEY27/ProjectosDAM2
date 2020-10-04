@@ -4,18 +4,8 @@ import java.util.Scanner;
 
 public class CifradoCesarActividad01 {
 
-	 static String [] codificacion (String [] alfabeto, int numero) {
-		 Scanner teclat = new Scanner (System.in);
-		 String [] modificar;
-		 int num = numero;
-		 modificar = alfabeto;
-		 
-		 for (int i=0; i<alfabeto.length; i++) {
-			 modificar[i] = [num];
-			 
-		 }
-		 
-	 }
+	 
+	 
 	public static void main(String[] args) {
 /*
  * Activitat 1
@@ -37,27 +27,57 @@ Feu un tercer programa que descodifiqui entrades utilitzant la «força bruta». El
 		Scanner teclat = new Scanner (System.in);
 		
 		int numero;
-		char aux;
-		//String g;
-		
+		String aux = null;
+		String change = null;
+		String g;
+		int cont=0;
+		boolean letra;
 		
 		System.out.println("ingrese las posiciones que desea  cifrar:  ");
 		numero = teclat.nextInt();
 		
 		
 		
-		char [] alfabeto  = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y','z'} ;
-		//String[] alfabeto  = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y","z"} ;
+		//char [] alfabeto  = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y','z'} ;
+		String[] alfabeto  = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y","z"} ;
 		
+		String alfabeto1 ="a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
 		
-		 //llenadoArray	
+			
 		for (int i=0; i<alfabeto.length-1; i++) {
+			if(numero<25) {
+				letra = true;
+			}
+			//else {
+			//	if (numero>25) {
+				//	System.out.println(" las posiciones son invalidas para codificar");
+				//}
+			
+		
 		 }
 		System.out.println("la letra a cifrar en el alfabeto es : "  + alfabeto[numero-1]);
 		aux = alfabeto[numero-1];
-			for (int i=0; i<alfabeto.length-1; i++) {				
+			for (int i=0; i<alfabeto.length-1; i++) {		
+				
 		}
 			System.out.println("la letra cifrada sería " + alfabeto[numero+numero-1]);
+			change = alfabeto[numero+numero-1];
+		//	if (change.compareTo("w"))
+			
+		System.out.println("Ingrese el texto a cifrar con su eleccion : ");
+		g = teclat.next();
+		
+		for (int i=0; i<g.length(); i++) {
+			g = g.replaceAll(aux, change) ;
+		}
+		
+		System.out.println(" el texto con el carácter cifrado es " + g);
+		
+		
 	}
-}
+
+		
+	}
+
+
 
