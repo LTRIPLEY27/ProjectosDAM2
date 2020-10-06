@@ -14,29 +14,28 @@ public class Actividad01PowerOfNumber {
 		
 
 		float num1;    // declaracion del valor del parametro a convertir
-		int n;      // parametro a calcular (n poencia)
+		int n;      // parametro a calcular (n potencia)
 		int x=0;      // variable contador del while
-		float aux = 1;  // variable auxiliar para llevar el control del float base
+		float aux = 1;  // variable auxiliar para llevar el control del float base, en la primera ronda sera el valor uno para luego ir adhiriendo el resultado al multiplicar por el float e incrementar
 		boolean comprobar;    // condicional a verificar el bloque de instrucciones del programa
 		
 		System.out.println("ingrese el valor a calcular : ");
 		num1= teclat.nextFloat();   // adhesion del valor a la variable
 		
 		System.out.println("ingrese la potencia a calcular");
-		n= teclat.nextInt();
+		n= teclat.nextInt();// valor del numero positivo
 		
 		if (n>0) {    // condicional evaluador (si n es mayor a 0 "numero positivo", entonces comprobar es true
 			comprobar = true;
-			x=0;    // contador es cero
-				while (true&& x<n) {   // mientras el condicional del numero positivo es "true" y el contador sea menor a la potencia a calcular
-					//num1 = num1 * num1;
+			x=0;    // contador evaluador del while es cero
+				while (true&& x<n) {   // mientras el condicional del número positivo es "true" y el contador sea menor a la potencia a calcular
 					aux = aux * num1;  // aux es igual a 1 * numero mientras el contador del while sea menor a la potencia
 					x++;   // contador incrementa hasta llegar a false y romper el ciclo
 				}
 				System.out.println(aux);  // total (numero a la potencia)
 		}
-		else {  // en caso de no ser un numero positivo no entra al bloque del while pues no es un numero positivo
-				System.out.println(" la potencia no es un numero positivo");  // identificar que no es un positivo y por ende se cierra el ciclo
+		else {  // en caso de no ser un numero positivo no entra al bloque del while ya que deriva del condicional
+				System.out.println(" la potencia no es un número positivo");  // identificar que no es un positivo y por ende se cierra el ciclo
 				}
 		
 		teclat.close();
