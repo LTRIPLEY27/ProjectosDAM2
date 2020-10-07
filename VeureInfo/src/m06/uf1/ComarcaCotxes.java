@@ -1,5 +1,6 @@
 package m06.uf1;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,17 +8,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class ComarcaCotxes implements java.io.Serializable{ // la interfaz "seriarizable" indica que la clase hara uso de flujos de entrada y salida
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	private String marca;  // los atributos se han de definir en la clase al momento siguiente
-	private String modelo;
+	private String modelo; // modelo de cada objeto cotxe
 	private int any;
 	private int matricula;
+	private String datosCotxes;
 
 	//public static void main(String[] args) {
 	/*Exercici 2 bis
@@ -38,19 +42,22 @@ S'ha d'entregar PDF amb el següent contingut:
 	 */
 
 				
-		// primer objeto de la clase cotxes
-	
+		// primer constructor de la clase coches
+						// definicion de los parametros a utilizar en el constructor, definidos en los atributos
 	public ComarcaCotxes (String marca, String modelo, int any, int matricula) {
 		
 		this.marca = marca;
 		this.modelo = modelo;
 		this.any = any;
 		this.matricula = matricula;
-	}
-	public ComarcaCotxes(String marca2, String modelo2, String string, String string2) {
+		this.datosCotxes = datosCotxes;
+	
+	//public ComarcaCotxes(String marca2, String modelo2, String string, String string2) {
 		// TODO Auto-generated constructor stub
+	//}
 	}
-	public String getMarca() { // método para mostrar el valor de un atributo
+	
+	 public String getMarca() { // método para obtener el valor de un atributo
 			return this.marca;
 			}
 	//public void setNombre (String marca) {
@@ -79,9 +86,24 @@ S'ha d'entregar PDF amb el següent contingut:
 	//}
 	
 	public String getDatosCotxes () {
-		return this.getMarca() + " " + this.getModelo() + " " + this.getAny() + " " + this.getMatricula();		
+		return this.getMarca() + " " + this.getModelo() + " " + this.getAny() + " " + this.getMatricula();
+		
 	}
 	
+
+
+ 	//File cotxes = new File ("myData.txt");
+ 	Scanner sc= new Scanner ( System.in );
+	
+ 	
+ 	String marca1 = sc.nextLine();
+ 	
+ 	System.out.println("marca: "+ marca1);
+ 		
+	
+
+}
+ 	
 	/*public Constructor () {
 		File cotxes = new File ("cotxescomarca.txt");
 		Scanner scan = new Scanner ( cotxes );
@@ -89,6 +111,7 @@ S'ha d'entregar PDF amb el següent contingut:
 		close()
 	}*/
 	
+	/*
 	String cotxesFichero = "e:\\Objetos.dat"; {
 	try {
 		FileOutputStream ficheroExit = new FileOutputStream(cotxesFichero);
@@ -122,7 +145,7 @@ S'ha d'entregar PDF amb el següent contingut:
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
-		};
+		};*/
 }
-}
+
 
