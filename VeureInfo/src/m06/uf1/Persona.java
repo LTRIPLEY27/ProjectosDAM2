@@ -62,7 +62,21 @@ public class Persona {
 	}
 		ficheroaleatorio.close();
 		
+		RandomAccessFile ficheroaleatorio1 = new RandomAccessFile (fichero, "r"); // le indicamos el parametro "r" para leer
+		
+		int apuntador = 0, dni1, telefono1;
+		char nombre1 [] = new char [20], apellido1 [] = new char [20], direccion1 [] = new char [20];
 
+		for (;;) {
+			ficheroaleatorio.seek(apuntador);
+			
+			dni1 = ficheroaleatorio.readInt();
+			
+			for (int i= 0; i<p; i++) {
+				
+			}
+		}
+		
 		/*Exercici 3 No-Aval
 
 Exercici 3
