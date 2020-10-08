@@ -60,10 +60,7 @@ Feu un tercer programa que descodifiqui entrades utilitzant la «força bruta». El
 	
 			
 		System.out.println("Ingrese el texto a cifrar con su eleccion : ");
-		g = teclat.nextLine();		//for (int i=0; i<g.length(); i++) {
-			//if (g.compareTo(alfabeto1)== 0){
-			//g = g.concat(" ");
-		
+		g = teclat.nextLine();
 		
 		
 		for (int i=0; i<g.length(); i++) {
@@ -71,7 +68,7 @@ Feu un tercer programa que descodifiqui entrades utilitzant la «força bruta». El
 			g = g.replaceAll(aux, change) ;
 		}
 		
-		System.out.println(" el texto con el carácter cifrado es " + g);
+		System.out.println(" el texto con el carácter cifrado es: " + g);
 		
 	}
 		

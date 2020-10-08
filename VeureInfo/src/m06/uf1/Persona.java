@@ -69,7 +69,7 @@ public class Persona {
 
 		for (;;) {
 			ficheroaleatorio.seek(apuntador);
-			
+			// se podría indicar directamente el paámetro a consultar y comparar con el fichero en el apuntador
 			dni1 = ficheroaleatorio.readInt();
 			
 			for (int i= 0; i<p; i++) {
