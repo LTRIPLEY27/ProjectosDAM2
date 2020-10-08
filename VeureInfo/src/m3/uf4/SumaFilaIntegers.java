@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class SumaFilaIntegers {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws IOException  {
 /*CFGS DAM/DAWM03-UF4-NF4-Activitat1-SumFileIntegers Write a program that adds all the integers in a file of text integers. This program will be similar to the ManySquaresexample program 
  * of the chapter and will use a similar input file. Prompt the user for the name of the input file.
  
@@ -56,18 +56,49 @@ public class SumaFilaIntegers {
 		//	System.out.println("La suma de los numeros es : " + suma );	
 */
 	Scanner teclat = new Scanner (System.in);	
+	int n;
 	
-	int [] fichero;
-	Integer [] blank;// variable auxiliar donde se almacena el fichero a leer
-	Integer n;
+	//Suma suma;
+	File num = new File ("e:\\integers.txt");
+	FileInputStream exit = new FileInputStream (num);
+	DataOutputStream entrada = new DataOutputStream (exit);
 	
-	String escribir = "escribir este mensaje";  // variable a almacenar en el fichero de prueba
-	String leido = " "; // variable auxiliar donde se almacenara
+	//FileOutputStream fichero1 = new FileOutputStream (num);
+	//ObjectOutputStream salida =  new ObjectOutputStream (fichero1);
+	
+	System.out.println("ingrese la cantidad de numeros a sumar : ");
+	n = teclat.nextInt();
+	
+	int [] fichero = null;
+	
+	for (int i=0; i<n; i++) {
+		entrada.writeInt(fichero[i]);
+	}
+	
+	entrada.close();
+	}
+	
+}
+	//try {
+		
+	
+		
+	//} catch (Exception ex) {ex.printStackTrace();
+	
+	
+	
+	//// variable auxiliar donde se almacena el fichero a leer
+	//Integer n;
+	
+	
+	
+	//String escribir = "escribir este mensaje";  // variable a almacenar en el fichero de prueba
+	//String leido = " "; // variable auxiliar donde se almacenara
 	
 	//blank = fichero;
 	
 	//fichero.toString();
-	
+	/*
 	try {  // siempre se ha de usar el método try para controlar el flujo de potenciales errores pues al leer un archivo podrian ocurrir
 		FileWriter integers = new FileWriter ("e:\\integers.txt"); //creacion de la ruta del fichero
 		integers.write(escribir); // le indicamos que al fichero ha de escribirse lo que se definio en la variable String que queriamos guardar
@@ -82,9 +113,9 @@ public class SumaFilaIntegers {
 		
 	} catch (Exception ex) { ex.printStackTrace();}
 	
-	System.out.println (" se ha guardado " + leido);
-	}
+	System.out.println (" se ha guardado " + leido);*/
+	
 
 
 
-}
+
