@@ -31,8 +31,8 @@ Feu un tercer programa que descodifiqui entrades utilitzant la «força bruta». El
 		String change = null;
 		String g;
 		int cont=0;
-		boolean letra;
-		
+		//boolean letra;
+		String correcto = "";
 		System.out.println("ingrese las posiciones que desea  desplazar para el cifrado:  ");
 		numero = teclat.nextInt(); // para aplicar el nextLine se ha de ingresar un nextLine en caso de querer ingresar un valor String para que lea espacios en blanco
 		teclat.nextLine();
@@ -42,26 +42,19 @@ Feu un tercer programa que descodifiqui entrades utilitzant la «força bruta». El
 		
 		//char [] alfabeto  = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y','z'} ;
 		String[] alfabeto  = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y","z"} ;
-		
-		//String alfabeto1 ="a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
-		
+
 			
 		for (int i=0; i<alfabeto.length-1; i++) {
-			if(numero<25) {
-				letra = true;
-			}
-			//else {
-			//	if (numero>25) {
-				//	System.out.println(" las posiciones son invalidas para codificar");
-				//}
+			if(numero>0) {
+				correcto = alfabeto[(numero + numero % alfabeto.length)];	
+		
+		}
 
 		 }
+	
 		System.out.println("la letra a cifrar en el alfabeto es : "  + alfabeto[numero-1]);
 		aux = alfabeto[numero-1];
 			
-		//for (int i=0; i<alfabeto.length-1; i++) {		
-				
-		//}
 			System.out.println("la letra cifrada sería " + alfabeto[numero+numero-1]);
 			change = alfabeto[numero+numero-1];
 	

@@ -61,32 +61,28 @@ public class SumaFilaIntegers {
 	Integer [] blank;// variable auxiliar donde se almacena el fichero a leer
 	Integer n;
 	
-	String escribir = "escribir este mensaje";
-	String leido = " ";
-	
-	System.out.println(" ingrese la cantidad de números que desea sumar");
-	n = teclat.nextInt();
-	fichero = new int [n];
+	String escribir = "escribir este mensaje";  // variable a almacenar en el fichero de prueba
+	String leido = " "; // variable auxiliar donde se almacenara
 	
 	//blank = fichero;
 	
 	//fichero.toString();
 	
 	try {  // siempre se ha de usar el método try para controlar el flujo de potenciales errores pues al leer un archivo podrian ocurrir
-		FileWriter integers = new FileWriter ("e:\\integers.txt");
-		integers.write(escribir);
-		integers.close();
+		FileWriter integers = new FileWriter ("e:\\integers.txt"); //creacion de la ruta del fichero
+		integers.write(escribir); // le indicamos que al fichero ha de escribirse lo que se definio en la variable String que queriamos guardar
+		integers.close(); // es imperativo que se cierre con (close()) pues en caso contrario no almacena nada
 		
 	} catch (Exception ex) { ex.printStackTrace(); }// manejo del flujo de error  IMPORTANTÍSIMO
 			
-	try {
-		FileReader lector = new FileReader ("e:\\integers.txt");
-		BufferedReader leer = new BufferedReader (lector);
+	try { // se han de indicar excepciones a comprobar el flujo por cada dato (uno para escribir, otro para leer y así dependiendo de lo que deseemos)
+		FileReader lector = new FileReader ("e:\\integers.txt"); // se le indice el fichero a leer
+		BufferedReader leer = new BufferedReader (lector);  // BufferedReader es una variable necesaria en la lectura de ficheros, ya que almacena la lectura que se aya haciendo del mismo
 		leido = leer.readLine(); 
 		
 	} catch (Exception ex) { ex.printStackTrace();}
 	
-	System.out.println (" se ha guardaddo " + leido);
+	System.out.println (" se ha guardado " + leido);
 	}
 
 
