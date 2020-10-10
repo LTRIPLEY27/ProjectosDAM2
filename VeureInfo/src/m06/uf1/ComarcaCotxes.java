@@ -15,18 +15,24 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public class ComarcaCotxes { 
-		// TODO Auto-generated constructor stub
-	
+		
 
 //implements java.io.Serializable//
 							// la interfaz "seriarizable" indica que la clase hara uso de flujos de ent0rada y salida
 	
+	
+	  // los atributos se han de definir en la clase al momento siguiente
+	 // modelo de cada objeto cotxe
+	
+	
+
 	public static void main(String[] args) throws IOException {	
 
 	Scanner teclat = new Scanner (System.in);
 	
-	ComarcaCotxes cotxe;
-
+	ComarcaCotxes cotxe ; // es mejor la insercion de datos en un array
+	
+	
 	File cotxes = new File ("e:\\cotxesComarca.txt");
 	FileOutputStream salida = new FileOutputStream (cotxes);
 	
@@ -35,20 +41,23 @@ public class ComarcaCotxes {
  	//FileWriter cotxes1 = new FileWriter ("cotxes");
  	//PrintWriter cotxes2 =  new PrintWriter ("cotxes");
  	int n;
- 	//String [] cotxe;
- 	String [] marca;
+ 	
+ 	String [] marca ;
  	String [] modelo;
- 	int [] any;
+ 	int [] any;;
  	String  [] matricula;
  	
+ 	
+ 		
  	System.out.println("Cuántos coches desea almacenar?");
  	n= teclat.nextInt();
  	
- 	//cotxe = new String [n];
  	marca = new String [n];
  	modelo = new String [n];
  	any = new int [n];
  	matricula = new String [n];
+	
+ 	
  	
  	for (int i=0; i<n; i++) {
  		
@@ -67,21 +76,20 @@ public class ComarcaCotxes {
  		
  		
  		
- 		//cotxe = new ComarcaCotxes (marca[i], modelo[i]); 
+ 		cotxe = new ComarcaCotxes (); 
  		
- 		imprime.writeUTF(marca[i]);
- 		
+ 		imprime.writeUTF(marca[i]);	
  		imprime.writeUTF(modelo[i]);
  		imprime.writeInt(any[i]);
  		imprime.writeUTF(matricula[i]);
  		
  	}
- 	
+
  	imprime.close();
- 	
+	}
  	
 	
  		}
-}
+
 
 	
