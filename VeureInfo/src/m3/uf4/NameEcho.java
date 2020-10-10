@@ -10,7 +10,7 @@ public class NameEcho {
 		Scanner teclat = new Scanner (System.in);		
 		String  nombre;
 		
-		
+			
 			System.out.println( " ingresa tu nombre completo " );
 			nombre = teclat.nextLine();
 			//System.out.println(nombre.substring(5,nombre.length()));

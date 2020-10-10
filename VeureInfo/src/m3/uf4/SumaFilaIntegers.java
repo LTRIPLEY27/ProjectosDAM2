@@ -48,17 +48,17 @@ public class SumaFilaIntegers {
 	
 	output.close();
 		
-
+// excepciones en java
 	try (Scanner scan = new Scanner (num)){// la sentencia funciona indicándoles la condición del bloque antes del paréntesis, puede ser más funcional
-			while (scan.hasNext()) {
-				number = scan.nextInt();				
+			while (scan.hasNext()) {  // indexamos la clase scan para verificar y manejar el control del flujo de la informacion con el parámetro de nuestra eleccion (en este caso un Int) pero es aplicativo a otros tipos
+				number = scan.nextInt();  // introducimos la variable number como auxiliar para que la clase scannener verifique numero a numero almacenado en el fichero la condicion				
 			}
 		System.out.println("la suma total es : " + suma);
 		
-		}catch (FileNotFoundException e) {
-		System.out.println();
-	}catch (IOException e) {
-		System.out.println();
+		}catch (FileNotFoundException e) { // primera excepcion en caso de no conseguir el fichero
+		System.out.println(" el archivo no existe");
+	}catch (IOException e) { // excepcion IO 
+		System.out.println("SE HA PRODUCIDO UN ERROR");
 		}
 	}
 	
