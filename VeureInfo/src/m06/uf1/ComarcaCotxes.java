@@ -26,15 +26,57 @@ public class ComarcaCotxes {
 	
 	
 
-	public static void main(String[] args) throws IOException {	
+	
+	
+	
+		public String marca;
+		public String modelo;
+		public int any;
+		public String matricula;
+		
+		public ComarcaCotxes  (String marca, String modelo, int any, String matricula){
+			this.marca = marca;
+			this.modelo = modelo;
+			this.any = any;
+			this.matricula = matricula;
+		}
+		
 
-	Scanner teclat = new Scanner (System.in);
-	
-	ComarcaCotxes cotxe ; // es mejor la insercion de datos en un array
-	
-	
-	File cotxes = new File ("e:\\cotxesComarca.txt");
-	FileOutputStream salida = new FileOutputStream (cotxes);
+
+static void arrayComarcaCotxes (ComarcaCotxes[] array) {
+		for (int i=0; i< array.length; i++) {
+			System.out.println((i+1) + array[i].marca + array[i].modelo + array[i].any + array[i].matricula);
+		}
+		//+ array[i].modelo, + array[i].matricula
+}	
+		
+		
+		public static void main(String[] args) {
+			Scanner teclat = new Scanner (System.in);
+			
+			int n;
+			System.out.println("cuantos coches desea almacenar?");
+			n = teclat.nextInt();
+			
+			ComarcaCotxes [] arrayComarcaCotxes = new ComarcaCotxes[n] ; // es mejor la insercion de datos en un array
+			
+			
+			
+			
+			arrayComarcaCotxes[0] = new ComarcaCotxes ("mercedes", "benz", 1980, "ETK");
+			arrayComarcaCotxes [1] = new ComarcaCotxes ("Buick", "coupe", 1956, "SDDF");
+			arrayComarcaCotxes [1] = new ComarcaCotxes ("Buick", "coupe", 1956, "SDDF");
+			
+			
+			
+			//File cotxes = new File ("e:\\cotxesComarca.txt");
+			
+			System.out.println("los coches son;: ");
+			arrayComarcaCotxes(arrayComarcaCotxes);
+			
+			
+			
+	/*FileOutputStream salida = new FileOutputStream (cotxes);
 	
 	ObjectOutputStream imprime = new ObjectOutputStream(salida);
 	//DataOutputStream imprime = new DataOutputStream (salida);
@@ -85,7 +127,7 @@ public class ComarcaCotxes {
  		
  	}
 
- 	imprime.close();
+ 	imprime.close();*/
 	}
  	
 	
