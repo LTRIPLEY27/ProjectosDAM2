@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
@@ -25,33 +26,33 @@ public class ComarcaCotxes  implements Serializable{
 	 // modelo de cada objeto cotxe
 	
 	
-
 	
 	
-	
-		public String marca;
-		public String modelo;
-		public int any;
-		public String matricula;
+		private String marca;
+		private String modelo;
+		private int any;
+		private String matricula;
 		
 		// constructor
-		public ComarcaCotxes  (String m, String mo, int a, String ma){
-			this.marca = m;
-			this.modelo = mo;
-			this.any = a;
-			this.matricula = ma;
+		public ComarcaCotxes  (String marca, String modelo, int any, String matricula){
+			this.marca = marca;
+			this.modelo = modelo;
+			this.any = any;
+			this.matricula = matricula;
 		}
+		
+		
 		
 		///////////////////////////////////////////////
 		
 		//Intenté realizar la recogida de datos coche por coche y arrays por arrays segun cada atributo pero me fue imposible pues no supe como implementarlo
-		/*
+		
 		public String getMarca () {
 			return (this.marca);
 		}
 		
-		public void setMarca(String m) {
-			this.marca = m;
+		public void setMarca(String ma) {
+			marca = ma;
 		}
 		
 		public String getModelo () {
@@ -59,7 +60,7 @@ public class ComarcaCotxes  implements Serializable{
 		}
 		
 		public void setModelo(String mo) {
-			this.modelo = mo;
+			modelo = mo;
 		}
 		
 		public int getAny () {
@@ -67,46 +68,85 @@ public class ComarcaCotxes  implements Serializable{
 		}
 		
 		public void setAny (int a) {
-			this.any = a;
+			any = a;
 		}
 		
 		public String getMatricula () {
-			return (this.modelo);
+			return (this.matricula);
 		}
 		
 		public void setMatricula (String ma) {
-			this.matricula = ma;
+			matricula = ma;
 		}
 
-		*/
+		
 
-static void arrayComarcaCotxes (ComarcaCotxes[] array) {
-		for (int i=0; i< array.length; i++) {
-			System.out.println((i+1) + array[i].marca + array[i].modelo + array[i].any + array[i].matricula);
-		}
+static void arrayComarcaCotxes (ComarcaCotxes[] array) { // en la busqueda de métodos funcionales para el ejercicio di con el arraList, el cual aun no comprendo del todo bien pero intenté hacer uso para el código del programa
+		for (int i=0; i< array.length; i++) { //en el método array intenté replicar al ejercicio almacenado en un único arreglo de objetos, arreglos de atributos.
+			System.out.println((i) + array[i].marca + array[i].modelo + array[i].any + array[i].matricula);
+		}// almacené el arreglo de atributos en un único array
 		
 }	
 		
 
 		
-		public static void main(String[] args) throws IOException {
+		public static void main(String[] args) throws IOException  {
 			//Scanner teclat = new Scanner (System.in);
+			ComarcaCotxes[] arrayComarcaCotxes = new ComarcaCotxes[3] ;
 			
-			ComarcaCotxes [] arrayComarcaCotxes = new ComarcaCotxes[10] ; // es mejor la insercion de datos en un array
+			// creo un objeto array de la clase ComarcaCotxes para indicar cada valor de los objetos a introducir
+			 // es mejor la insercion de datos en un array
 			// se crea el array de objetos a almacenar en el fichero
 			
-			File cotxes = new File ("e:\\cotxesComarca.txt");
-			FileOutputStream salida = new FileOutputStream (cotxes);
-			ObjectOutputStream dataCotxe = new ObjectOutputStream (salida);
+			File cotxes = new File ("e:\\cotxesComarca.txt"); // creo el archivo con la ruta a almacenar
+			FileOutputStream salida = new FileOutputStream (cotxes); // flujo de salida al disco con el parámetro del "File" 
+			ObjectOutputStream dataCotxe = new ObjectOutputStream (salida); //con el ObjectOutputStream procesamos los datos vinculandora con el FileOutputStream
+			FileInputStream entrada = new FileInputStream (cotxes); // con el FileInputStream indicamos el flujo de entrada al disco, con el parámetro del archivo que creamos (File)
+			ObjectInputStream lectura = new ObjectInputStream (entrada); // equiparable al ObjectOutputStream, el ObjectInputStream procesa los datos y se han de vincular con el FileIn
 			
-			//int n;
-			//System.out.println("cuantos coches desea almacenar?");
-			//n = teclat.nextInt();
+		/*
+			int n;
+			System.out.println("cuantos coches desea almacenar?");
+			n = teclat.nextInt();
+			ComarcaCotxes [] arrayComarcaCotxes; 
+			ComarcaCotxes [] arrayComarcaCotxes1 = new ComarcaCotxes[n] ;
 			
+			for (int i=0; i<n; i++) {
+				System.out.println("ingrese la marca: ");
+				arrayComarcaCotxes1[i].marca =;
+				
+				System.out.println("ingrese modelo: ");
+				arrayComarcaCotxes1[i].modelo = teclat.next();
+				
+				System.out.println("ingrese el any: ");
+				arrayComarcaCotxes1[i].any = teclat.nextInt();
+				
+				System.out.println("ingrese la matricula: ");
+				arrayComarcaCotxes1[n].matricula = teclat.next();
+				
+				dataCotxe.writeObject(arrayComarcaCotxes1);
+				
+				
+				
+				//ComarcaCotxes.arrayComarcaCotxes(i);
+			}
 			
 				
+			/*/
 			
 			
+			String m[] = {"mercedes", "Buick","Rolls","Ferrari","Jaguar","Audi","Porsche","Ford","BMW","Toyota"};
+			String mo[] = {"benz","coupe","Royce","L30","Litle Bastard","A7","coupe", "Fordlane","grand legacy","corolla"};
+			int a[] = {1980,1956,1924,1963,1967,2019,1956,1927,1974,1986};
+			String ma []= {"ETK", "SDDF","WERT","ZORRO","qASY","SJKLF","SDDF","YXCH","DEAN","SPPÜ"}; 
+			
+			
+			
+			for (int i=0; i<m.length; i++) {
+				arrayComarcaCotxes = new ComarcaCotxes (m[i] + mo[i] + a[i]+ ma[i]);
+			}
+				
+			/*
 			arrayComarcaCotxes [0] = new ComarcaCotxes ("mercedes", "benz", 1980, "ETK");
 			arrayComarcaCotxes [1] = new ComarcaCotxes ("Buick", "coupe", 1956, "SDDF");
 			arrayComarcaCotxes [2] = new ComarcaCotxes ("Rolls", "Roice", 1924, "WERT");
@@ -117,19 +157,28 @@ static void arrayComarcaCotxes (ComarcaCotxes[] array) {
 			arrayComarcaCotxes [7] = new ComarcaCotxes ("Ford", "Fordlane", 1927, "ERCYXZ");
 			arrayComarcaCotxes [8] = new ComarcaCotxes ("BMW", "grand legacy", 1974, "876H");
 			arrayComarcaCotxes [9] = new ComarcaCotxes ("Toyota", "corolla", 1986, "SppÜ");
-			
+			*/
 			
 			dataCotxe.writeObject(arrayComarcaCotxes);
 			
+		
+		
+			
 			dataCotxe.close();
 		
-			//File cotxes = new File ("e:\\cotxesComarca.txt");
+		
 			
-			System.out.println("los coches son;: ");
+			System.out.println("los coches son: ");
 			arrayComarcaCotxes(arrayComarcaCotxes);
 			System.out.println(" ");
-	
+		
+		
+		//	try {
+				//while (true)
+					//arrayComarcaCotxes1 =  ComarcaCotxes dataCotxe.reset();
+					//System.out.println(" Cotxe " + ComarcaCotxe.get);
 			
+		}	
 	///////////////////////////////////////////////////
 			
 			
@@ -190,7 +239,7 @@ static void arrayComarcaCotxes (ComarcaCotxes[] array) {
 	}
  	
 	
- 		}
+ 		
 
 
 	
