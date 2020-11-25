@@ -15,24 +15,57 @@ import com.mysql.jdbc.Statement;
  */
 public class UF2Activity1 {  // construccion en objetos
 	
-	private Connection con = null;
-	private Statement stament = null;
-	private ResultSet result = null;   // clase para verificar datos sql, adem#as de proveer multitud de métodos para la consulta de las tablas
+	//private Connection con = null;
+	//private java.sql.Statement stament = null;
+	//private ResultSet result = null;   // Interfaz para verificar datos sql, adem#as de proveer multitud de métodos para la consulta de las tablas
 	
 
 	
 	// método con excepcion para lograr la conexion de la base de datos.
-	public void conexion() {	//Connection con = null; // objeto
+	public static void main(String[] args) {	//Connection con = null; // objeto
 	
 	try {
+		
+		// se crea la conexion
+		//Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes");
+		Connection con = null;
+		
 		String url = "jdbc:mysql://localhost:3306/alumnes";  // cadena url con la que se establece conexion
 		String user = "root";
 		String password = " "; // parámetros a usar en la clase
-	
-		Driver drive = DriverManager.getDriver(url);    // creacion del objeto Driver (nos ayuda en el uso de los métodos)
-		
+				
+		Driver drive = DriverManager.getDriver(url);    // creacion delobjeto Driver (nos ayuda en el uso de los métodos, "GetConection")
+				
+				
 		Properties propiedad = new Properties ();  // instanciacion de la clase Properties (necesaria para 
-}  catch (Exception e) {
+		propiedad.setProperty("user", user);
+		propiedad.setProperty("root", password);
+				
+		con = drive.connect(url, propiedad);
+		// adhesion al objeto Stament la conexion
+		java.sql.Statement stament = con.createStatement();  
+		
+		//  eJECUTAR sql
+		//ResultSet result = stament.executeQuery("SELECT * FROM ALUMNE"); 
+
+		String cambia = "INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('nom', dni, '1989-11-11', 'zaragoza', sex, postalcode, poblation)";
+		//String url = "jdbc:mysql://localhost:3306/alumnes";  // cadena url con la que se establece conexion
+		//String user = "root";
+		//String password = " "; // parámetros a usar en la clase
+		
+		stament.execute(cambia);
+	//	Driver drive = DriverManager.getDriver(url);    // creacion delobjeto Driver (nos ayuda en el uso de los métodos, "GetConection")
+		
+		
+		//Properties propiedad = new Properties ();  // instanciacion de la clase Properties (necesaria para 
+		//propiedad.setProperty("user", user);
+		//propiedad.setProperty("root", password);
+		
+		//con = drive.connect(url, propiedad);
+		
+		System.out.println("hecho");
+	
+	}  catch (Exception e) {
 	System.out.println(" conexion no establecida");
 	
 }
