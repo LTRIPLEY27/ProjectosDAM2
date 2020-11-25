@@ -5,9 +5,13 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.Scanner;
 
 import com.mysql.jdbc.Statement;
 
+/*
+ * 
+ */
 public class UF2Activity1 {
 
 	public static void main(String[] args) {
@@ -32,6 +36,8 @@ public class UF2Activity1 {
 		
 		System.out.println("provaDeConnexio()");
 		
+
+		
 		try {  // 
 			
 			Driver driver = DriverManager.getDriver(url);  // instanciacion del objeto tipo Driver, la url de la String se le adjunta
@@ -43,13 +49,56 @@ public class UF2Activity1 {
 			con = driver.connect(url, properties);  // instanciacion del Objeto Connection (definida fuera de la excepcion) con el método de la clase driver (url y properties)
 			System.out.println("conexion realizada mediante DriverConection");
 			
+			boolean eleccion = false;
+			int opcion;
+			String nom,dni,postal, sex, poblation ;
+			//Date date;
+			int postalcode;
 			
+			Scanner ask = new Scanner (System.in);
+			
+			System.out.println("ingrese la opcion de su preferencia: " + '\n' + 
+					"desea insertar alumno (1)" + '\n' + " desea modificar alumno " + '\n' +
+					"desea eliminar alumno  (3)" + '\n' + "modificar poblacion (4)");
+			opcion = ask.nextInt();
+			
+			//while (eleccion) {
+				
+				
+				switch (opcion) {
+				case 1:
+					System.out.println("Desea insertar algun alumno, por favor indique los parámetros en orden a insertar " );
+					System.out.println("Nombre");
+					nom = ask.next();
+					System.out.println("DNI");
+					dni = ask.next();
+					System.out.println("Fecha de Nacimiento");
+					//date = ask.next();
+					//System.out.println("Direccion Postal");
+					//postal = ask.next();
+					System.out.println("Sexo");
+					sex = ask.next();
+					System.out.println("Poblacion");
+					poblation = ask.next();
+					System.out.println("Codigo Postal");
+					postalcode = ask.nextInt();
+					
+					// método de la clase objeto CONECTION para crear una insercion en la base de datos
+					inserta = con.createStatement();    //
+					inserta.execute("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('nom', dni, '1989-11-11', 'zaragoza', sex, postalcode, poblation)");
+					
+					break;
+				}
+
+			
+			
+			//}
 			// método de la clase objeto CONECTION para crear una insercion en la base de datos
 			//inserta = con.createStatement();    //
 			//inserta.execute("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('GEOFREY', '456678J', '1989-11-11', 'CATALUNYA', 'DONNA', 43204, 'TARRAGONA')");
 			
-			modifica = con.createStatement();
-			modifica.execute("UPDATE ALUMNE SET NOM = 'hugh' where ADRESA_POSTAL = 'CATALUNYA'" );
+			//modifica = con.createStatement();
+			//modifica.execute("UPDATE ALUMNE SET NOM = 'hugh' where ADRESA_POSTAL = 'CATALUNYA'" );
 			
 			//elimina = con.createStatement();
 			//elimina.execute("DELETE FROM ALUMNE WHERE NOM = 'GEOFREY'");
