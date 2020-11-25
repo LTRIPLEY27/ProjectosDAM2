@@ -13,89 +13,92 @@ import com.mysql.jdbc.Statement;
 /*
  * 
  */
-public class UF2Activity1 {  // construccion en objetos
+public class MySQLFirts {  // construccion en objetos
 	
-	//private Connection con = null;
-	//private java.sql.Statement stament = null;
-	//private ResultSet result = null;   // Interfaz para verificar datos sql, adem#as de proveer multitud de métodos para la consulta de las tablas
-	
+	private Connection con = null;
+	private java.sql.Statement stament = null;
+	private ResultSet result = null;   // Interfaz para verificar datos sql, adem#as de proveer multitud de métodos para la consulta de las tablas
+	private String respuesta;
+	private String name;
+	private String dni;
+	private int nacimiento;
+	private String postalAdress;
+	private String sex;
+	private int postalCode;
+	private String poblation;
 
 	
 	// método con excepcion para lograr la conexion de la base de datos.
-	public static void main(String[] args) {	//Connection con = null; // objeto
+	//public static void main(String[] args) {	//Connection con = null; // objeto
 	
-	try {
-		
+	
+	public void  connected () {	  // método para conectar el atributo con con la base de datos
 		// se crea la conexion
-		//Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes");
-		Connection con = null;
 		
-		String url = "jdbc:mysql://localhost:3306/alumnes";  // cadena url con la que se establece conexion
-		String user = "root";
-		String password = " "; // parámetros a usar en la clase
-				
-		Driver drive = DriverManager.getDriver(url);    // creacion delobjeto Driver (nos ayuda en el uso de los métodos, "GetConection")
-				
-				
-		Properties propiedad = new Properties ();  // instanciacion de la clase Properties (necesaria para 
-		propiedad.setProperty("user", user);
-		propiedad.setProperty("root", password);
-				
-		con = drive.connect(url, propiedad);
-		// adhesion al objeto Stament la conexion
-		java.sql.Statement stament = con.createStatement();  
+		try {
+			
+			//String consulta = "INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('GEOFREY', '456678J', '1989-11-11', 'CATALUNYA', 'DONNA', 43204, 'TARRAGONA')";
+			
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+			
+			stament = con.createStatement();
+			
+			stament.execute("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('GEOFREY', '456678J', '1989-11-11', 'CATALUNYA', 'DONNA', 43204, 'TARRAGONA')");
+			
+			System.out.println("EXITOSA");
+			
 		
-		//  eJECUTAR sql
-		//ResultSet result = stament.executeQuery("SELECT * FROM ALUMNE"); 
-
-		String cambia = "INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('nom', dni, '1989-11-11', 'zaragoza', sex, postalcode, poblation)";
-		//String url = "jdbc:mysql://localhost:3306/alumnes";  // cadena url con la que se establece conexion
-		//String user = "root";
-		//String password = " "; // parámetros a usar en la clase
+		} catch (SQLException e) {
+			System.out.println(" NO EXITOSA");
+			e.printStackTrace();
+		}
 		
-		stament.execute(cambia);
-	//	Driver drive = DriverManager.getDriver(url);    // creacion delobjeto Driver (nos ayuda en el uso de los métodos, "GetConection")
-		
-		
-		//Properties propiedad = new Properties ();  // instanciacion de la clase Properties (necesaria para 
-		//propiedad.setProperty("user", user);
-		//propiedad.setProperty("root", password);
-		
-		//con = drive.connect(url, propiedad);
-		
-		System.out.println("hecho");
-	
-	}  catch (Exception e) {
-	System.out.println(" conexion no establecida");
-	
-}
-	
-
-	
 	}
 	
-}
-		/*
+	// método para editar la tabla
+	public void edita() {
+	
+		try {
+			
+			//String consulta = "INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('GEOFREY', '456678J', '1989-11-11', 'CATALUNYA', 'DONNA', 43204, 'TARRAGONA')";
+			
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+			
+			stament = con.createStatement();
+			
+			stament.execute("UPDATE ALUMNE SET NOM = 'hugh' where ADRESA_POSTAL = 'CATALUNYA'");
+			
+			System.out.println("EXITOSA");
+			
 		
-		java.sql.Statement inserta = null;  // objeto de la clase Statement
+		} catch (SQLException e) {
+			System.out.println(" NO EXITOSA");
+			e.printStackTrace();
+		}
+	}	
+	
+	//public 
+		
+		//java.sql.Statement inserta = null;  // objeto de la clase Statement
 		// no me permite instanciar Statement sin esa declinacion de java. previa
 		
-		java.sql.Statement modifica = null;
+		//java.sql.Statement modifica = null;
 		
-		java.sql.Statement elimina = null;
+		//java.sql.Statement elimina = null;
 		
 		
 		
 		
 						// paquete de la clase Driver
-		String url = "jdbc:mysql://localhost:3306/alumnes"; // imprescindible REALIZAR BIEN EL DIRECCIONAMIENTO
+		//String url = "jdbc:mysql://localhost:3306/alumnes"; // imprescindible REALIZAR BIEN EL DIRECCIONAMIENTO
 		
-		String user = "root";  // variable para usuario root
-		String password = "";
+		//String user = "root";  // variable para usuario root
+		//String password = "";
 		
-		System.out.println("provaDeConnexio()");
+		//System.out.println("provaDeConnexio()");
 		
-
+/*public void  connected () {
+	
 		
 		try {  // 
 			
@@ -163,16 +166,16 @@ public class UF2Activity1 {  // construccion en objetos
 			
 			//elimina = con.createStatement();
 			//elimina.execute("DELETE FROM ALUMNE WHERE NOM = 'GEOFREY'");
-			/*con.close();  // cierre del flujo 
-		}
-		catch (SQLException ex) {
-			System.out.println("Error " + ex.getMessage());
-		}
+			//con.close();  // cierre del flujo 
+		//}
+		//catch (SQLException ex) {
+			//System.out.println("Error " + ex.getMessage());
+	//	}
 		
 	}
-		
-}
-*/
+	
+
+
 /*System.out.println(" MySQL JDBC ");
 
 try {//"com.mysql.sj.jdbc.Driver"
