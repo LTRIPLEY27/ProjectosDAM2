@@ -3,6 +3,7 @@ package m06.uf2;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Scanner;
@@ -12,11 +13,36 @@ import com.mysql.jdbc.Statement;
 /*
  * 
  */
-public class UF2Activity1 {
+public class UF2Activity1 {  // construccion en objetos
+	
+	private Connection con = null;
+	private Statement stament = null;
+	private ResultSet result = null;   // clase para verificar datos sql, adem#as de proveer multitud de métodos para la consulta de las tablas
+	
 
-	public static void main(String[] args) {
-		Connection con = null; // objeto
+	
+	// método con excepcion para lograr la conexion de la base de datos.
+	public void conexion() {	//Connection con = null; // objeto
+	
+	try {
+		String url = "jdbc:mysql://localhost:3306/alumnes";  // cadena url con la que se establece conexion
+		String user = "root";
+		String password = " "; // parámetros a usar en la clase
+	
+		Driver drive = DriverManager.getDriver(url);    // creacion del objeto Driver (nos ayuda en el uso de los métodos)
 		
+		Properties propiedad = new Properties ();  // instanciacion de la clase Properties (necesaria para 
+}  catch (Exception e) {
+	System.out.println(" conexion no establecida");
+	
+}
+	
+
+	
+	}
+	
+}
+		/*
 		
 		java.sql.Statement inserta = null;  // objeto de la clase Statement
 		// no me permite instanciar Statement sin esa declinacion de java. previa
@@ -49,7 +75,7 @@ public class UF2Activity1 {
 			con = driver.connect(url, properties);  // instanciacion del Objeto Connection (definida fuera de la excepcion) con el método de la clase driver (url y properties)
 			System.out.println("conexion realizada mediante DriverConection");
 			
-			boolean eleccion = false;
+			/*boolean eleccion = false;
 			int opcion;
 			String nom,dni,postal, sex, poblation ;
 			//Date date;
@@ -67,9 +93,11 @@ public class UF2Activity1 {
 				
 				switch (opcion) {
 				case 1:
+					inserta = con.createStatement(); 
 					System.out.println("Desea insertar algun alumno, por favor indique los parámetros en orden a insertar " );
 					System.out.println("Nombre");
 					nom = ask.next();
+					inserta.execute("INSERT INTO ALUMNE (NOM,)" + "VALUES (nom)");
 					System.out.println("DNI");
 					dni = ask.next();
 					System.out.println("Fecha de Nacimiento");
@@ -84,13 +112,13 @@ public class UF2Activity1 {
 					postalcode = ask.nextInt();
 					
 					// método de la clase objeto CONECTION para crear una insercion en la base de datos
-					inserta = con.createStatement();    //
-					inserta.execute("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('nom', dni, '1989-11-11', 'zaragoza', sex, postalcode, poblation)");
+					   //
+					//inserta.execute("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('nom', dni, '1989-11-11', 'zaragoza', sex, postalcode, poblation)");
 					
 					break;
 				}
 
-			
+			*/
 			
 			//}
 			// método de la clase objeto CONECTION para crear una insercion en la base de datos
@@ -102,7 +130,7 @@ public class UF2Activity1 {
 			
 			//elimina = con.createStatement();
 			//elimina.execute("DELETE FROM ALUMNE WHERE NOM = 'GEOFREY'");
-			con.close();  // cierre del flujo 
+			/*con.close();  // cierre del flujo 
 		}
 		catch (SQLException ex) {
 			System.out.println("Error " + ex.getMessage());
@@ -111,7 +139,7 @@ public class UF2Activity1 {
 	}
 		
 }
-
+*/
 /*System.out.println(" MySQL JDBC ");
 
 try {//"com.mysql.sj.jdbc.Driver"
