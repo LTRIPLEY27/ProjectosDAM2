@@ -45,14 +45,14 @@ public class UF2Activity1 {
 			
 			
 			// método de la clase objeto CONECTION para crear una insercion en la base de datos
-			inserta = con.createStatement();    //
-			inserta.execute("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('GEOFREY', '456678J', '1989-11-11', 'CATALUNYA', 'DONNA', 43204, 'TARRAGONA')");
+			//inserta = con.createStatement();    //
+			//inserta.execute("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('GEOFREY', '456678J', '1989-11-11', 'CATALUNYA', 'DONNA', 43204, 'TARRAGONA')");
 			
-			//modifica = con.createStatement();
-			//modifica.execute("ALTER TABLE ADD ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('HUGH', '53567902F', '2000-06-12', 'ARAGON', 'HOMME', '56209', 'ZARAGOZA')");
+			modifica = con.createStatement();
+			modifica.execute("UPDATE ALUMNE SET NOM = 'hugh' where ADRESA_POSTAL = 'CATALUNYA'" );
 			
-			elimina = con.createStatement();
-			elimina.execute("");
+			//elimina = con.createStatement();
+			//elimina.execute("DELETE FROM ALUMNE WHERE NOM = 'GEOFREY'");
 			con.close();  // cierre del flujo 
 		}
 		catch (SQLException ex) {
