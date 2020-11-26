@@ -1,5 +1,7 @@
 package m06.uf2;
 
+import java.util.Scanner;
+
 public class MainConsulta {
 
 	public static void main(String[] args) {
@@ -7,9 +9,58 @@ public class MainConsulta {
 
 		MySQLFirts aplicacion = new MySQLFirts ();  // instanciacion del objeto aplicacion, de la clase MySQL
 		
-		aplicacion.connected();
+		Scanner ask = new Scanner (System.in);
+		
+		String nom, dni, adresa, sex, pob;
+		
+		int data, any, dia, mes, postal, opcion;
+		
+		System.out.println("ingrese la opcion de su preferencia: " + '\n' + 
+				"desea insertar alumno (1)" + '\n' + " desea modificar alumno " + '\n' +
+				"desea eliminar alumno  (3)" + '\n' + "modificar poblacion (4)");
+		opcion = ask.nextInt();
+		
+		//while (eleccion) {
+			
+			
+			switch (opcion) {
+			case 1:
+				System.out.println("ingrese el nombre");
+				nom = ask.next();
+				
+				System.out.println("dni");
+				dni = ask.next();
+				
+				System.out.println("ingrese fecha de nacimiento, any");
+				any = ask.nextInt();
+				
+				System.out.println("ingrese mes");
+				mes = ask.nextInt();
+				
+				System.out.println("ingrese dia");
+				dia = ask.nextInt();
+				
+				System.out.println("ingrese el direccion fiscal");
+				adresa = ask.next();
+				
+				System.out.println("ingrese el sexo");
+				sex = ask.next();
+				
+				System.out.println("código postal ");
+				postal = ask.nextInt();
+				
+				System.out.println("ingrese la poblacion ");
+				pob = ask.next();
+				
+				aplicacion.connected(nom, dni, adresa, postal, pob);
+				break;
+			}
+
+		
 		
 		aplicacion.edita();
+		
+		
 		
 	}
 

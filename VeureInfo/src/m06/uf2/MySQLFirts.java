@@ -5,6 +5,8 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -21,7 +23,7 @@ public class MySQLFirts {  // construccion en objetos
 	private String respuesta;
 	private String name;
 	private String dni;
-	private int nacimiento;
+	private Date nacimiento;
 	private String postalAdress;
 	private String sex;
 	private int postalCode;
@@ -32,7 +34,7 @@ public class MySQLFirts {  // construccion en objetos
 	//public static void main(String[] args) {	//Connection con = null; // objeto
 	
 	
-	public void  connected () {	  // método para conectar el atributo con con la base de datos
+	public void  connected (String nom, String dni, String adresa, int postal, String pob) {	  // método para conectar el atributo con con la base de datos
 		// se crea la conexion
 		
 		try {
@@ -43,7 +45,7 @@ public class MySQLFirts {  // construccion en objetos
 			
 			stament = con.createStatement();
 			
-			stament.execute("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('GEOFREY', '456678J', '1989-11-11', 'CATALUNYA', 'DONNA', 43204, 'TARRAGONA')");
+			stament.execute("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ( nom + dni + nacimiento + adresa  + postal + pob )"); 
 			
 			System.out.println("EXITOSA");
 			
@@ -76,6 +78,55 @@ public class MySQLFirts {  // construccion en objetos
 			e.printStackTrace();
 		}
 	}	
+	
+	
+	public void elimina() {
+		
+		try {
+			
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+			
+			stament = con.createStatement();
+			
+			stament.execute("DELETE FROM ALUMNE " );
+			
+			
+		} catch (SQLException e) {
+			System.out.println( " No exitosa");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void creaTabla() {
+		
+		try {
+			
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+		
+			stament = con.createStatement();
+			
+			stament.execute(" CREATE TABLE ");
+			
+			
+		} catch (SQLException e) {
+			System.out.println("no exitosa");
+		}
+	}
+	
+	public void getDate (int any, int mes, int dia) {   // adhiero la subclase Gregorian calendar con sus 3 parametros necesarios para obtener la fecha en el formato correcto de la tabla
+		
+		GregorianCalendar fecha = new GregorianCalendar (any, mes, dia);
+		
+		nacimiento = fecha.getTime();
+		
+	}
+	
+	public Date getNacimiento () {
+		return nacimiento;
+		
+	}
+	
 	
 	//public 
 		
