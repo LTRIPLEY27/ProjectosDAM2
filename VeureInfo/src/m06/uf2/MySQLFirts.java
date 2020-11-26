@@ -10,6 +10,7 @@ import java.util.GregorianCalendar;
 import java.util.Properties;
 import java.util.Scanner;
 
+import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 /*
@@ -20,32 +21,121 @@ public class MySQLFirts {  // construccion en objetos
 	private Connection con = null;
 	private java.sql.Statement stament = null;
 	private ResultSet result = null;   // Interfaz para verificar datos sql, adem#as de proveer multitud de métodos para la consulta de las tablas
-	private String respuesta;
+	private java.sql.PreparedStatement set = null; // objeto Prepare para poder modificar los valores
+	
 	private String name;
 	private String dni;
-	private Date nacimiento;
+	private java.sql.Date nacimiento;
 	private String postalAdress;
-	private String sex;
+	private String sexo;
 	private int postalCode;
 	private String poblation;
 
+	
+	public MySQLFirts (String nom, String ident, String adresa, String sex, int postal, String pob){
+		
+		name = nom;
+		dni = ident;
+		postalAdress = adresa;
+		sexo = sex;
+		postalCode = postal;
+		poblation = pob;
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String nom) {
+		this.name = nom;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String ident) {
+		this.dni = ident;
+	}
+
+	public java.sql.Date getNacimiento() {
+		return nacimiento;
+	}
+
+	public void setNacimiento(java.sql.Date nacimiento) {
+		this.nacimiento = nacimiento;
+	}
+
+	public String getPostalAdress() {
+		return postalAdress;
+	}
+
+	public void setPostalAdress(String adresa) {
+		this.postalAdress = adresa;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSex(String sex) {
+		this.sexo = sex;
+	}
+
+	public int getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(int postal) {
+		this.postalCode = postal;
+	}
+
+	public String getPoblation() {
+		return poblation;
+	}
+
+	public void setPoblation(String pob) {
+		this.poblation = pob;
+	}
+
+	
 	
 	// método con excepcion para lograr la conexion de la base de datos.
 	//public static void main(String[] args) {	//Connection con = null; // objeto
 	
 	
-	public void  connected (String nom, String dni, String adresa, int postal, String pob) {	  // método para conectar el atributo con con la base de datos
+	public void  connected () {	  // método para conectar el atributo con con la base de datos
 		// se crea la conexion
-		
+		//String nom, String dni, String adresa, int postal, String pob
 		try {
 			
 			//String consulta = "INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ('GEOFREY', '456678J', '1989-11-11', 'CATALUNYA', 'DONNA', 43204, 'TARRAGONA')";
 			
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 			
-			stament = con.createStatement();
+			//stament = con.createStatement();
+			//+ ? + ? + ? + ? + ? + ?
+			//, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION
 			
-			stament.execute("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ( nom + dni + nacimiento + adresa  + postal + pob )"); 
+			//String datos = "INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)  VALUES ( ? + ? + ? + ? + ? + ? + ?)";
+			
+			set = con.prepareStatement("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)  VALUES ( ? + ? + ? + ? + ? + ? + ?)");
+			
+			set.setString(1, "Luke");
+			set.setString(2, "12839z");
+			set.setString(3, "1989-3-4");
+			set.setString(4, "reus");
+			set.setString(5, "masc");
+			set.setInt(6, 4578);
+			set.setString(7, "tarragona");
+			
+			
+			int colums = set.executeUpdate();
+			
+			
+			
+			//stament.execute("INSERT INTO ALUMNE (NOM, DNI, DATA_NAIXEMEN, ADRESA_POSTAL, SEXE, CODI_POSTAL, POBLACION)" + "VALUES ( nom + dni + nacimiento + adresa  + postal + pob )"); 
 			
 			System.out.println("EXITOSA");
 			
@@ -58,7 +148,7 @@ public class MySQLFirts {  // construccion en objetos
 	}
 	
 	// método para editar la tabla
-	public void edita() {
+/*	public void edita() {
 	
 		try {
 			
@@ -114,15 +204,16 @@ public class MySQLFirts {  // construccion en objetos
 		}
 	}
 	
-	public void getDate (int any, int mes, int dia) {   // adhiero la subclase Gregorian calendar con sus 3 parametros necesarios para obtener la fecha en el formato correcto de la tabla
+	public void setDate (int any, int mes, int dia) {   // adhiero la subclase Gregorian calendar con sus 3 parametros necesarios para obtener la fecha en el formato correcto de la tabla
 		
-		GregorianCalendar fecha = new GregorianCalendar (any, mes, dia);
+		GregorianCalendar nacimiento = new GregorianCalendar (any, mes, dia);
 		
-		nacimiento = fecha.getTime();
+		//nacimiento = fecha.getTime();
+		nacimiento.getTime();
 		
 	}
 	
-	public Date getNacimiento () {
+	public java.sql.Date getNacimiento () {
 		return nacimiento;
 		
 	}
