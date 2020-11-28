@@ -280,13 +280,40 @@ public void metodoBorrar (String elemento, String column) {
 			System.out.println(" elemento no eliminado o inexistente, vuelva a intentarlo");
 		}
 		
-		//prova.executeUpdate();
-		
-		
-		
 		
 	} catch (Exception e) {
 		System.out.println(" no se ha podido eliminar el elmento");
+		}
+	}
+
+
+
+public void metodoVerificaElemento (String elem) {
+	
+	try {
+		
+		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+		
+		//if (elem.equalsIgnoreCase("nombre")) {
+			//String sentencia = " SELECT * FROM ALUMNES WHERE NOM = " + elem;
+			
+			//prova = conect.createStatement();
+			//this.nombre = elem;
+			String sentencia = " SELECT * FROM ALUMNES WHERE NOM = ? " ;
+			//table = conect.createStatement();
+			prova = (PreparedStatement) conect.createStatement();
+			this.nombre = elem;
+			
+			//tables = table.executeQuery(sentencia);
+			tables = prova.executeQuery(sentencia);
+			while (tables.next()) {
+			
+				System.out.println(tables.getString(1));
+			}
+		//}
+		
+	} catch (Exception e) {
+		System.out.println("consulta no realizada");
 		}
 	}
 }

@@ -21,7 +21,7 @@ public class MainConsulta {
 		
 		System.out.println("ingrese la opcion de su preferencia: " + '\n' + 
 				"desea insertar alumno (1)" + '\n' + " desea modificar alumno (2)" + '\n' +
-				"desea eliminar alumno  (3)" + '\n' + "modificar poblacion (4)" + '\n' + "salir (5)");
+				"desea eliminar alumno  (3)" +  '\n' + " realizar alguna consulta sobre un elemento (4)" + '\n' + "modificar poblacion (5)" + '\n' + "salir (6)");
 		
 		opcion = ask.nextInt();
 		
@@ -86,6 +86,18 @@ public class MainConsulta {
 				tabla.metodoBorrar(elemento, column);
 				tabla.mostrarTabla();
 				break;
+				
+			case 4:
+				String elem;
+				String col;
+				//System.out.println(" ingrese la columna a consultar");
+				//col = ask.next();
+				
+				System.out.println(" ingrese el elemento a consultar");
+				elem = ask.next();
+				
+				tabla.metodoVerificaElemento(elem);
+				
 			}
 			
 		}
