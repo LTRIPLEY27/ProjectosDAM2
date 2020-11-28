@@ -17,15 +17,15 @@ public class MySQLFirts {
 	
 	private String nombre;   // atributos de la tabla
 	private String dni;
-	private int fecha;
+	private String fecha;
 	private String postalDireccion;
 	private String sexo;
-	private int postalCode;
+	private String postalCode;
 	private String poblacion;
 	
 
 // constructor
-	public MySQLFirts (String name, String ident, int agno, String direct, String sex, int postal, String pobla) {
+	public MySQLFirts (String name, String ident, String agno, String direct, String sex, String postal, String pobla) {
 		
 		nombre = name;
 		dni = ident;
@@ -58,13 +58,13 @@ public class MySQLFirts {
 		this.dni = ident;
 	}
 	
-	public void setFecha (int agno) {
+	public void setFecha (String agno) {
 				
 		this.fecha = agno;
 		
 	}
 	
-	public int getFecha () {
+	public String getFecha () {
 		return fecha;
 	}
 	
@@ -84,13 +84,13 @@ public class MySQLFirts {
 		this.sexo = sex;
 	}
 	
-	public int getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
 
 
 
-	public void setPostalCode(int postal) {
+	public void setPostalCode(String postal) {
 		this.postalCode = postal;
 	}
 
@@ -120,10 +120,10 @@ public class MySQLFirts {
 			
 			prova.setString(1, this.nombre);  // edición de la tabla mediante los métodos del PreparedStatment
 			prova.setString(2, this.dni);
-			prova.setInt(3, this.fecha);
+			prova.setString(3, this.fecha);
 			prova.setString(4, this.postalDireccion);
 			prova.setString(5, this.sexo);
-			prova.setInt(6, this.postalCode);
+			prova.setString(6, this.postalCode);
 			prova.setString(7, this.poblacion);
 			
 			prova.executeUpdate();  // sentencia para modificar a la tabla luego de todos los valores pertinentes
@@ -183,20 +183,24 @@ public class MySQLFirts {
 		try {
 			
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
-			
-			
-			
-			//if (eleccion.equalsIgnoreCase("NOMBRE")) {
-				this.nombre = nuevoValor;
+				
+			if (eleccion.equalsIgnoreCase("NOMBRE")) {
+				//this.nombre = nuevoValor;
 				//String vieja = valor;
 				String sentencia = "UPDATE ALUMNE SET NOM = ? WHERE NOM = ?;";
 				
 				prova = conect.prepareStatement(sentencia);
+				this.nombre = nuevoValor;
 				
-				prova.setString(1, this.nombre);
+				prova.setString(1, valor);
+				prova.setString(2, this.nombre);
+				
+				//prova.setString(3, this.nombre);
 				
 				prova.executeUpdate();
-			//}
+				
+				System.out.println("SENTENCIA REALIZADA");
+			}
 		
 		} catch (Exception e) {
 			System.out.println(" no se ha logrado modificar la tabla");
@@ -204,25 +208,82 @@ public class MySQLFirts {
 	}
 	
 
-
-public void metodoBorrar (String elemento) {
+// metodo borrar
+public void metodoBorrar (String elemento, String column) {
 	
 	try {
 		
 		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 		
-		String sentencia = "DELETE FROM ALUMNE WHERE NOM = ?;";
+		//String sentencia = "DELETE FROM ALUMNE WHERE ? = ?;";
 		
-		this.nombre = elemento;
+		//this.nombre = elemento;
 		
-		prova = conect.prepareStatement(sentencia);
+	//	prova = conect.prepareStatement(sentencia);
+		if (column.equalsIgnoreCase("nombre")) {
+			String sentencia = "DELETE FROM ALUMNE WHERE NOM = ?;";
+			prova = conect.prepareStatement(sentencia);
+			this.nombre = elemento;
+			prova.setString(1, this.nombre);
+			prova.executeUpdate();
+			System.out.println(" elemento eliminado");
+			
+		} else if (column.equalsIgnoreCase("dni")) {
+				String sentencia = "DELETE FROM ALUMNE WHERE DNI = ?;";
+				prova = conect.prepareStatement(sentencia);
+				this.dni = elemento;
+				prova.setString(2, this.dni);
+				prova.executeUpdate();
+				System.out.println(" elemento eliminado");
+			} 
+			else if (column.equalsIgnoreCase("nacimiento")) {
+				String sentencia = "DELETE FROM ALUMNE WHERE NACIMIENTO = ?;";
+				prova = conect.prepareStatement(sentencia);
+				this.fecha = elemento;
+				prova.setString(3, this.fecha);
+				prova.executeUpdate();
+				System.out.println(" elemento eliminado");
+			} 
+			else if (column.equalsIgnoreCase("direccion")) {
+				String sentencia = "DELETE FROM ALUMNE WHERE POSTAL_DIRECTION = ?;";
+				prova = conect.prepareStatement(sentencia);
+				this.postalDireccion = elemento;
+				prova.setString(4, this.postalDireccion);
+				prova.executeUpdate();
+				System.out.println(" elemento eliminado");
+			}
+			else if (column.equalsIgnoreCase("sexo")) {
+				String sentencia = "DELETE FROM ALUMNE WHERE SEX = ?;";
+				prova = conect.prepareStatement(sentencia);
+				this.sexo = elemento;
+				prova.setString(5, this.sexo);
+				prova.executeUpdate();
+				System.out.println(" elemento eliminado");
+			}
+			else if (column.equalsIgnoreCase("postal")) {
+				String sentencia = "DELETE FROM ALUMNE WHERE POSTAL_CODE = ?;";
+				prova = conect.prepareStatement(sentencia);
+				this.postalCode = elemento;
+				prova.setString(6, this.postalCode);
+				prova.executeUpdate();
+				System.out.println(" elemento eliminado");
+			} 
+			else if (column.equalsIgnoreCase("poblacion")) {
+				String sentencia = "DELETE FROM ALUMNE WHERE POBLATION = ?;";
+				prova = conect.prepareStatement(sentencia);
+				this.poblacion = elemento;
+				prova.setString(7, this.poblacion);
+				prova.executeUpdate();
+				System.out.println(" elemento eliminado");
+	
+		} else {
+			System.out.println(" elemento no eliminado o inexistente, vuelva a intentarlo");
+		}
 		
-		prova.setString(1, this.nombre);
-		
-		prova.executeUpdate();
+		//prova.executeUpdate();
 		
 		
-		System.out.println(" elemento eliminado");
+		
 		
 	} catch (Exception e) {
 		System.out.println(" no se ha podido eliminar el elmento");

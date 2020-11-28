@@ -8,13 +8,13 @@ public class MainConsulta {
 	
 		Scanner ask = new Scanner (System.in);
 		
-		String name, ident, direct, sex, pobla;
+		String name, ident, agno,  direct, sex, postal, pobla;
 		
 		boolean respuesta = false;
 		
-		int agno, postal, opcion;
+		int opcion;
 		
-		MySQLFirts tabla = new MySQLFirts (null, null, 0, null, null, 0, null);
+		MySQLFirts tabla = new MySQLFirts (null, null, null, null, null, null, null);
 		
 		System.out.println("la tabla sobre la que se trabaja es la siguiente");
 		tabla.mostrarTabla();
@@ -36,7 +36,7 @@ public class MainConsulta {
 				ident = ask.next();
 				
 				System.out.println(" ingrese any de nacimiento");
-				agno = ask.nextInt();
+				agno = ask.next();
 				
 				System.out.println(" ingrese direccion postal");
 				direct = ask.next();
@@ -45,7 +45,7 @@ public class MainConsulta {
 				sex = ask.next();
 				
 				System.out.println(" ingrese código postal");
-				postal = ask.nextInt();
+				postal = ask.next();
 				
 				System.out.println(" ingrese poblacion");
 				pobla = ask.next();
@@ -77,16 +77,20 @@ public class MainConsulta {
 				
 			case 3:
 				String elemento;
+				String column;
+				System.out.println(" ingrese la columna a eliminar");
+				column = ask.next();
 				System.out.println(" ingrese el elemento a eliminar");
 				elemento = ask.next();
 				
-				tabla.metodoBorrar(elemento);
+				tabla.metodoBorrar(elemento, column);
 				tabla.mostrarTabla();
 				break;
 			}
 			
 		}
 		/*
+		 * 
 		System.out.println(" ingrese nombre");
 		name = ask.next();
 		
