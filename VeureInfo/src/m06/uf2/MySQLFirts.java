@@ -176,22 +176,56 @@ public class MySQLFirts {
 	}
 	
 	
-	// método para modificar datos en la tabla
-	public void metodoModificar() {
+	// método para modificar datos en lab tabla
+	
+	public void metodoModificar(String eleccion, String valor, String nuevoValor, String modifica) {
 		
 		try {
 			
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 			
-			String sentencia = ("UPDATE ");
-			
-			prova = conect.prepareStatement(sentencia);
 			
 			
+			//if (eleccion.equalsIgnoreCase("NOMBRE")) {
+				this.nombre = nuevoValor;
+				//String vieja = valor;
+				String sentencia = "UPDATE ALUMNE SET NOM = ? WHERE NOM = ?;";
+				
+				prova = conect.prepareStatement(sentencia);
+				
+				prova.setString(1, this.nombre);
+				
+				prova.executeUpdate();
+			//}
 		
 		} catch (Exception e) {
 			System.out.println(" no se ha logrado modificar la tabla");
 		}
 	}
 	
+
+
+public void metodoBorrar (String elemento) {
+	
+	try {
+		
+		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+		
+		String sentencia = "DELETE FROM ALUMNE WHERE NOM = ?;";
+		
+		this.nombre = elemento;
+		
+		prova = conect.prepareStatement(sentencia);
+		
+		prova.setString(1, this.nombre);
+		
+		prova.executeUpdate();
+		
+		
+		System.out.println(" elemento eliminado");
+		
+	} catch (Exception e) {
+		System.out.println(" no se ha podido eliminar el elmento");
+		}
+	}
 }
