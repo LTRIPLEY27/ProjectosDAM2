@@ -10,8 +10,20 @@ public class MainConsulta {
 		
 		String name, ident, direct, sex, pobla;
 		
+		boolean respuesta = false;
+		
 		int agno, postal;
 		
+		MySQLFirts tabla = new MySQLFirts (null, null, 0, null, null, 0, null);
+		
+		System.out.println("la tabla sobre la que se trabaja es la siguiente");
+		tabla.mostrarTabla();
+		
+		while (respuesta) {
+			
+			
+		}
+		/*
 		System.out.println(" ingrese nombre");
 		name = ask.next();
 		
@@ -36,7 +48,9 @@ public class MainConsulta {
 		
 		MySQLFirts nueva = new MySQLFirts (name , ident, agno, direct, sex, postal, pobla);
 	
-		nueva.conected();
+		//nueva.metodoInsertar();
+		
+		*/
 		
 	}
 }
