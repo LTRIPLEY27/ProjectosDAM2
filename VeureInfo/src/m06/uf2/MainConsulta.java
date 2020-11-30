@@ -60,19 +60,16 @@ public class MainConsulta {
 				break;
 				
 			case 2:
-				//String modifica = ("UPDATE  ");
 				String eleccion;
-				String valor;
+				String col;
 				String nuevoValor;
 				System.out.println(" ingrese la columna que desea modificar");
+				col = ask.next();
+				System.out.println(" ingrese  la fila que desea modificar  ");
 				eleccion = ask.next();
-				System.out.println(" ingrese el numero de la fila que desea modificar  ");
-				valor = ask.next();
 				System.out.println(" ingrese el nuevo valor a modificar");
 				nuevoValor = ask.next();
-				String modifica = ("UPDATE ALUMNE SET " + eleccion + " = " + nuevoValor + "WHERE " + eleccion + " = " + valor);
-				//if (eleccion.equalsIgnoreCase(name)) {
-				tabla.metodoModificar(eleccion, valor, nuevoValor, modifica);
+				tabla.metodoModificar(col, eleccion, nuevoValor);
 				tabla.mostrarTabla();	
 				//}
 				break;

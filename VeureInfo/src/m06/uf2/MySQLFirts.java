@@ -10,10 +10,10 @@ import java.util.GregorianCalendar;
 
 public class MySQLFirts {
 	
-	Connection conect = null;
-	PreparedStatement prova = null;
-	ResultSet tables = null;  // interfaz para verificar la tabla
-	Statement table = null;   // Statement de la tabla
+	private Connection conect = null;
+	private PreparedStatement prova = null;
+	private ResultSet tables = null;  // interfaz para verificar la tabla
+	private Statement table = null;   // Statement de la tabla
 	
 	private String nombre;   // atributos de la tabla
 	private String dni;
@@ -178,24 +178,21 @@ public class MySQLFirts {
 	
 	// método para modificar datos en lab tabla
 	
-	public void metodoModificar(String eleccion, String valor, String nuevoValor, String modifica) {
+	public void metodoModificar(String col, String eleccion, String nuevoValor) {
 		
 		try {
 			
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 				
-			if (eleccion.equalsIgnoreCase("NOMBRE")) {
-				//this.nombre = nuevoValor;
-				//String vieja = valor;
-				String sentencia = "UPDATE ALUMNE SET NOM = ? WHERE NOM = ?;";
-				
+			if (col.equalsIgnoreCase("NOMBRE")) {
+				String sentencia = "UPDATE ALUMNE SET NOM = ? WHERE NACIMIENTO = ?;";
+										// 1er parámetro (nuevoValor)			// segundo parámetro (eleccion)
 				prova = conect.prepareStatement(sentencia);
-				this.nombre = nuevoValor;
 				
-				prova.setString(1, valor);
-				prova.setString(2, this.nombre);
+				prova.setString(1, nuevoValor); // HAY QUE LLEVAR LA CORRELACION EXACTA DE LOS PARÁMETROS o da error
+				prova.setString(2, eleccion);
 				
-				//prova.setString(3, this.nombre);
+				
 				
 				prova.executeUpdate();
 				
@@ -440,8 +437,6 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			prova = conect.prepareStatement(sentencia);
 			
 			prova.setString(1, elem1);
-			//prova.setString(2, elem2);
-			//prova.setString(3, elem);
 			
 			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
 			
