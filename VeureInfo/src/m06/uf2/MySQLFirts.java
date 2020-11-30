@@ -281,8 +281,11 @@ public void metodoBorrar (String elemento, String column) {
 		}
 		
 			conect.close();
+	
 	} catch (Exception e) {
+	
 		System.out.println(" no se ha podido eliminar el elmento");
+		
 		}
 	}
 
@@ -294,22 +297,29 @@ public void metodoVerificaElemento (String elem) {
 		
 		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 		
-		String sentencia = "SELECT NOM FROM ALUMNE WHERE DNI = ?";
+		String sentencia = "SELECT DNI, NACIMIENTO, POSTAL_DIRECTION  FROM ALUMNE WHERE NOM = ?";
 		
 		prova = conect.prepareStatement(sentencia);
 		
 		prova.setString(1, elem);
+		//prova.setString(3, elem);
 		
-		tables = prova.executeQuery();
+		tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
 		
 		while (tables.next()) {
 			
 			System.out.println(tables.getString(1));
+			System.out.println(tables.getString(2));
+			System.out.println(tables.getString(3));
+			System.out.println(tables.getString(4));
+			System.out.println(tables.getString(5));
+			System.out.println(tables.getString(6));
+			System.out.println(tables.getString(7));
 		}
 		
 		
 	} catch (Exception e) {
-		System.out.println("consulta no realizada");
+		//System.out.println("consulta no realizada");
 		}
 	}
 

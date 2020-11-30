@@ -91,12 +91,13 @@ public class MainConsulta {
 				
 			case 4:
 				String elem;
-				//String col;
+				String elem2;
 				
 				
 				
 				System.out.println(" ingrese el elemento a consultar");
 				elem = ask.next();
+				
 				
 				tabla.metodoVerificaElemento(elem);
 				
