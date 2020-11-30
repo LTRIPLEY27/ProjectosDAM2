@@ -294,26 +294,19 @@ public void metodoVerificaElemento (String elem) {
 		
 		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 		
-		//if (elem.equalsIgnoreCase("nombre")) {
-			//String sentencia = " SELECT * FROM ALUMNES WHERE NOM = " + elem;
+		String sentencia = "SELECT NOM FROM ALUMNE WHERE DNI = ?";
+		
+		prova = conect.prepareStatement(sentencia);
+		
+		prova.setString(1, elem);
+		
+		tables = prova.executeQuery();
+		
+		while (tables.next()) {
 			
-			//prova = conect.createStatement();
-			//this.nombre = elem;
-			String sentencia = " SELECT * FROM ALUMNES WHERE NOM = ? " ;
-			
-			String obten = getNombre();
-			
-			//table = conect.createStatement();
-			prova = (PreparedStatement) conect.createStatement();
-			this.nombre = elem;
-			
-			//tables = table.executeQuery(sentencia);
-			tables = prova.executeQuery(sentencia);
-			while (tables.next()) {
-			
-				System.out.println(tables.getString(1));
-			}
-		//}
+			System.out.println(tables.getString(1));
+		}
+		
 		
 	} catch (Exception e) {
 		System.out.println("consulta no realizada");

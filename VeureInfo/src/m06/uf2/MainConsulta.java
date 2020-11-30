@@ -91,17 +91,16 @@ public class MainConsulta {
 				
 			case 4:
 				String elem;
-				String col;
-				//System.out.println(" ingrese la columna a consultar");
-				//col = ask.next();
+				//String col;
+				
+				
 				
 				System.out.println(" ingrese el elemento a consultar");
 				elem = ask.next();
 				
-				//tabla.metodoVerificaElemento(elem);
+				tabla.metodoVerificaElemento(elem);
 				
-				tabla.obtenvalor(elem);
-				tabla.toString();
+				
 			}
 			
 		}
