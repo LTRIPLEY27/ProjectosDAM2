@@ -291,22 +291,27 @@ public void metodoBorrar (String elemento, String column) {
 
 
 
-public void metodoVerificaElemento (String elem) {
+public void metodoVerificaElemento (String elem, String elem1) {
 	
 	try {
 		
 		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+									// no ejecuta mas de un parámetro
 		
-		String sentencia = "SELECT DNI, NACIMIENTO, POSTAL_DIRECTION  FROM ALUMNE WHERE NOM = ?";
+		
+		if (elem.equalsIgnoreCase("nombre")) {
+		
+		String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE NOM = ?";
 		
 		prova = conect.prepareStatement(sentencia);
 		
-		prova.setString(1, elem);
+		prova.setString(1, elem1);
+		//prova.setString(2, elem2);
 		//prova.setString(3, elem);
 		
 		tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
 		
-		while (tables.next()) {
+		while (tables.next()) {  //  
 			
 			System.out.println(tables.getString(1));
 			System.out.println(tables.getString(2));
@@ -315,9 +320,144 @@ public void metodoVerificaElemento (String elem) {
 			System.out.println(tables.getString(5));
 			System.out.println(tables.getString(6));
 			System.out.println(tables.getString(7));
+			}
 		}
-		
-		
+		else if (elem.equalsIgnoreCase("dni")) {
+			
+			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE DNI = ?";
+			
+			prova = conect.prepareStatement(sentencia);
+			
+			prova.setString(1, elem1);
+			//prova.setString(2, elem2);
+			//prova.setString(3, elem);
+			
+			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
+			
+			while (tables.next()) {  //  
+				
+				System.out.println(tables.getString(1));
+				System.out.println(tables.getString(2));
+				System.out.println(tables.getString(3));
+				System.out.println(tables.getString(4));
+				System.out.println(tables.getString(5));
+				System.out.println(tables.getString(6));
+				System.out.println(tables.getString(7));
+			}
+		}
+		if (elem.equalsIgnoreCase("nacimiento")) {
+			
+			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE NACIMIENTO = ?";
+			
+			prova = conect.prepareStatement(sentencia);
+			
+			prova.setString(1, elem1);
+			//prova.setString(2, elem2);
+			//prova.setString(3, elem);
+			
+			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
+			
+			while (tables.next()) {  //  
+				
+				System.out.println(tables.getString(1));
+				System.out.println(tables.getString(2));
+				System.out.println(tables.getString(3));
+				System.out.println(tables.getString(4));
+				System.out.println(tables.getString(5));
+				System.out.println(tables.getString(6));
+				System.out.println(tables.getString(7));
+			}
+		} if (elem.equalsIgnoreCase("direccion")) {
+			
+			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE POSTAL_DIRECTION = ?";
+			
+			prova = conect.prepareStatement(sentencia);
+			
+			prova.setString(1, elem1);
+			//prova.setString(2, elem2);
+			//prova.setString(3, elem);
+			
+			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
+			
+			while (tables.next()) {  //  
+				
+				System.out.println(tables.getString(1));
+				System.out.println(tables.getString(2));
+				System.out.println(tables.getString(3));
+				System.out.println(tables.getString(4));
+				System.out.println(tables.getString(5));
+				System.out.println(tables.getString(6));
+				System.out.println(tables.getString(7));
+			}
+		} if (elem.equalsIgnoreCase("sexo")) {
+			
+			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE SEX = ?";
+			
+			prova = conect.prepareStatement(sentencia);
+			
+			prova.setString(1, elem1);
+			//prova.setString(2, elem2);
+			//prova.setString(3, elem);
+			
+			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
+			
+			while (tables.next()) {  //  
+				
+				System.out.println(tables.getString(1));
+				System.out.println(tables.getString(2));
+				System.out.println(tables.getString(3));
+				System.out.println(tables.getString(4));
+				System.out.println(tables.getString(5));
+				System.out.println(tables.getString(6));
+				System.out.println(tables.getString(7));
+			}	
+		}if (elem.equalsIgnoreCase("CODIGO")) {
+			
+			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE POSTAL_CODE = ?";
+			
+			prova = conect.prepareStatement(sentencia);
+			
+			prova.setString(1, elem1);
+			//prova.setString(2, elem2);
+			//prova.setString(3, elem);
+			
+			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
+			
+			while (tables.next()) {  //  
+				
+				System.out.println(tables.getString(1));
+				System.out.println(tables.getString(2));
+				System.out.println(tables.getString(3));
+				System.out.println(tables.getString(4));
+				System.out.println(tables.getString(5));
+				System.out.println(tables.getString(6));
+				System.out.println(tables.getString(7));
+			}
+		}if (elem.equalsIgnoreCase("POBLACION")) {
+			
+			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE POBLACION = ?";
+			
+			prova = conect.prepareStatement(sentencia);
+			
+			prova.setString(1, elem1);
+			//prova.setString(2, elem2);
+			//prova.setString(3, elem);
+			
+			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
+			
+			while (tables.next()) {  //  
+				
+				System.out.println(tables.getString(1));
+				System.out.println(tables.getString(2));
+				System.out.println(tables.getString(3));
+				System.out.println(tables.getString(4));
+				System.out.println(tables.getString(5));
+				System.out.println(tables.getString(6));
+				System.out.println(tables.getString(7));
+			}
+		} else {
+			System.out.println("elemento o columna inválida, verifique");
+		}
 	} catch (Exception e) {
 		//System.out.println("consulta no realizada");
 		}

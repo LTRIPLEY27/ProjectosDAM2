@@ -91,15 +91,17 @@ public class MainConsulta {
 				
 			case 4:
 				String elem;
-				String elem2;
+				String elem1;
 				
 				
 				
-				System.out.println(" ingrese el elemento a consultar");
+				System.out.println(" ingrese la columna a consultar");
 				elem = ask.next();
 				
+				System.out.println(" ingrese el elemento a consultar");
+				elem1 = ask.next();
 				
-				tabla.metodoVerificaElemento(elem);
+				tabla.metodoVerificaElemento(elem, elem1);
 				
 				
 			}
