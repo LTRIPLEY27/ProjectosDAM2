@@ -19,6 +19,8 @@ public class MainConsulta {
 		System.out.println("la tabla sobre la que se trabaja es la siguiente");
 		tabla.mostrarTabla();
 		
+		
+		
 		System.out.println("ingrese la opcion de su preferencia: " + '\n' + 
 				"desea insertar alumno (1)" + '\n' + " desea modificar alumno (2)" + '\n' +
 				"desea eliminar alumno  (3)" +  '\n' + " realizar alguna consulta sobre un elemento (4)" + '\n' + "modificar poblacion (5)" + '\n' + "salir (6)");
@@ -96,8 +98,10 @@ public class MainConsulta {
 				System.out.println(" ingrese el elemento a consultar");
 				elem = ask.next();
 				
-				tabla.metodoVerificaElemento(elem);
+				//tabla.metodoVerificaElemento(elem);
 				
+				tabla.obtenvalor(elem);
+				tabla.toString();
 			}
 			
 		}

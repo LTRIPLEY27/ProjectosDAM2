@@ -280,7 +280,7 @@ public void metodoBorrar (String elemento, String column) {
 			System.out.println(" elemento no eliminado o inexistente, vuelva a intentarlo");
 		}
 		
-		
+			conect.close();
 	} catch (Exception e) {
 		System.out.println(" no se ha podido eliminar el elmento");
 		}
@@ -300,6 +300,9 @@ public void metodoVerificaElemento (String elem) {
 			//prova = conect.createStatement();
 			//this.nombre = elem;
 			String sentencia = " SELECT * FROM ALUMNES WHERE NOM = ? " ;
+			
+			String obten = getNombre();
+			
 			//table = conect.createStatement();
 			prova = (PreparedStatement) conect.createStatement();
 			this.nombre = elem;
@@ -316,4 +319,5 @@ public void metodoVerificaElemento (String elem) {
 		System.out.println("consulta no realizada");
 		}
 	}
-}
+
+}	
