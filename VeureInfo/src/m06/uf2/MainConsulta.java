@@ -23,7 +23,7 @@ public class MainConsulta {
 		
 		System.out.println("ingrese la opcion de su preferencia: " + '\n' + 
 				"desea insertar alumno (1)" + '\n' + " desea modificar alumno (2)" + '\n' +
-				"desea eliminar alumno  (3)" +  '\n' + " realizar alguna consulta sobre un elemento (4)" + '\n' + "modificar poblacion (5)" + '\n' + "salir (6)");
+				"desea eliminar alumno  (3)" +  '\n' + " realizar alguna consulta sobre un elemento (4)" + '\n' + "crear tabla poblacion (5)" + '\n' + "salir (6)");
 		
 		opcion = ask.nextInt();
 		
@@ -63,13 +63,13 @@ public class MainConsulta {
 				String eleccion;
 				String col;
 				String nuevoValor;
-				System.out.println(" ingrese la columna que desea modificar");
-				col = ask.next();
+				//System.out.println(" ingrese la columna que desea modificar");
+				//col = ask.next();
 				System.out.println(" ingrese  la fila que desea modificar  ");
 				eleccion = ask.next();
 				System.out.println(" ingrese el nuevo valor a modificar");
 				nuevoValor = ask.next();
-				tabla.metodoModificar(col, eleccion, nuevoValor);
+				tabla.metodoModificar( eleccion, nuevoValor);
 				tabla.mostrarTabla();	
 				//}
 				break;
@@ -99,8 +99,15 @@ public class MainConsulta {
 				elem1 = ask.next();
 				
 				tabla.metodoVerificaElemento(elem, elem1);
+				break;
 				
+			case 5:
+				String code, pobl;
+				System.out.println(" ingrese la poblacion que desea crear");
+				pobl = ask.next();
 				
+				System.out.println(" ingrese el codigo postal");
+				code = ask.next();
 			}
 			
 		}

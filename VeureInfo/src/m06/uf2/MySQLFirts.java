@@ -10,6 +10,8 @@ import java.util.GregorianCalendar;
 
 public class MySQLFirts {
 	
+	
+	// LOS OBJETOS DE LAS CLASES MYSQL SE PUEDEN DECLARAR SIN NECESIDAD DE SER PUBLICOS, PROVADOS Y ETC
 	private Connection conect = null;
 	private PreparedStatement prova = null;
 	private ResultSet tables = null;  // interfaz para verificar la tabla
@@ -178,18 +180,23 @@ public class MySQLFirts {
 	
 	// método para modificar datos en lab tabla
 	
-	public void metodoModificar(String col, String eleccion, String nuevoValor) {
+	public void metodoModificar(String eleccion, String nuevoValor) {
 		
 		try {
 			
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 				
-			if (col.equalsIgnoreCase("NOMBRE")) {
+			//if (col.equalsIgnoreCase("NOMBRE")) {
+			
+			
+			// PREGUNTAR PORQUÉ NO ACEPTA MAS DE 2 VALORES A EVALUAR PARA LA EDICION
+				//String columna = "NOM";
 				String sentencia = "UPDATE ALUMNE SET NOM = ? WHERE NACIMIENTO = ?;";
 										// 1er parámetro (nuevoValor)			// segundo parámetro (eleccion)
 				prova = conect.prepareStatement(sentencia);
 				
 				prova.setString(1, nuevoValor); // HAY QUE LLEVAR LA CORRELACION EXACTA DE LOS PARÁMETROS o da error
+				//prova.setString(2, nuevoValor);
 				prova.setString(2, eleccion);
 				
 				
@@ -197,7 +204,7 @@ public class MySQLFirts {
 				prova.executeUpdate();
 				
 				System.out.println("SENTENCIA REALIZADA");
-			}
+			//}
 		
 		} catch (Exception e) {
 			System.out.println(" no se ha logrado modificar la tabla");
@@ -441,7 +448,7 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
 			
 			while (tables.next()) {  //  
-				
+									// CON EL ResultSet se obiene unoa a uno las columnas 
 				System.out.println(tables.getString(1));
 				System.out.println(tables.getString(2));
 				System.out.println(tables.getString(3));
@@ -458,4 +465,25 @@ public void metodoVerificaElemento (String elem, String elem1) {
 		}
 	}
 
+	public void crearPoblacion(String code, String pobl) {
+		
+		try {
+			
+			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+
+			String sentencia = " INSERT INTO POBLACION (CODI_POSTAL, POBLACION) VALUES ( ?, ?);";
+			
+			prova = conect.prepareStatement(sentencia);
+			
+			prova.setString(1, code);
+			prova.setString(2, pobl);
+			
+			prova.executeUpdate();
+			
+			System.out.println(" EXITOSAMENTE CREADA");
+		} catch (Exception e) {
+			
+			System.out.println(" no creada");
+		}
+	}
 }	
