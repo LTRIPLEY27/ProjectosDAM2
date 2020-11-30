@@ -14,7 +14,7 @@ public class MainConsulta {
 		
 		int opcion;
 		
-		MySQLFirts tabla = new MySQLFirts (null, null, null, null, null, null, null);
+		MySQLFirts tabla = new MySQLFirts (null, null, null, null, null, null);
 		
 		System.out.println("la tabla sobre la que se trabaja es la siguiente");
 		tabla.mostrarTabla();
@@ -27,7 +27,7 @@ public class MainConsulta {
 		
 		opcion = ask.nextInt();
 		
-		while (opcion < 5) {
+		while (opcion < 6) {
 			switch (opcion) {
 			
 			case 1:
@@ -49,11 +49,11 @@ public class MainConsulta {
 				System.out.println(" ingrese código postal");
 				postal = ask.next();
 				
-				System.out.println(" ingrese poblacion");
-				pobla = ask.next();
+				//System.out.println(" ingrese poblacion");
+				//pobla = ask.next();
 
 				
-				MySQLFirts nueva = new MySQLFirts (name , ident, agno, direct, sex, postal, pobla);
+				MySQLFirts nueva = new MySQLFirts (name , ident, agno, direct, sex, postal);
 			
 				nueva.metodoInsertar();
 				nueva.mostrarTabla();
@@ -108,6 +108,13 @@ public class MainConsulta {
 				
 				System.out.println(" ingrese el codigo postal");
 				code = ask.next();
+				
+				tabla.crearPoblacion(code, pobl);
+				
+				break;
+				
+			default :
+				System.out.println(" OPCION NO VALIDA, INTENTE NUEVAMENTE");
 			}
 			
 		}

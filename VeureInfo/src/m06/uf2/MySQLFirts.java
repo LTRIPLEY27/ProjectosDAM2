@@ -23,11 +23,11 @@ public class MySQLFirts {
 	private String postalDireccion;
 	private String sexo;
 	private String postalCode;
-	private String poblacion;
+	//private String poblacion;
 	
 
 // constructor
-	public MySQLFirts (String name, String ident, String agno, String direct, String sex, String postal, String pobla) {
+	public MySQLFirts (String name, String ident, String agno, String direct, String sex, String postal) {
 		
 		nombre = name;
 		dni = ident;
@@ -35,7 +35,7 @@ public class MySQLFirts {
 		postalDireccion = direct;
 		sexo = sex;
 		postalCode = postal;
-		poblacion = pobla;
+		//poblacion = pobla;
 		
 	}
 	
@@ -97,15 +97,15 @@ public class MySQLFirts {
 	}
 
 	
-	public String getPoblacion() {
-		return poblacion;
-	}
+	//public String getPoblacion() {
+		//return poblacion;
+	//}
 
 
 
-	public void setPoblacion(String pobla) {
-		this.poblacion = pobla;
-	}
+	//public void setPoblacion(String pobla) {
+		//this.poblacion = pobla;
+	//}
 	
 	
 	// método insertar en la tabla
@@ -115,8 +115,8 @@ public class MySQLFirts {
 			
 			// clase mysql para controlar la base de datos
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
-			// variable a usar en la clase connection con la sentencia que se desee agregar
-			String sentencia = "INSERT INTO ALUMNE (NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION) VALUES (?,?,?,?,?,?,?)";
+			// variable a usar en la clase connection con la sentencia que se desee agregar					//, POBLACION  (SE ELIMINO POBLACION)
+			String sentencia = "INSERT INTO ALUMNE (NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE) VALUES (?,?,?,?,?,?)";
 			// instancia de la clase PreparedStatement para dinamizar la tabla de la base de datos (IMPERATIVO SI SE VA A EDITAR O AGREGAR VALORES A LA MISMA)
 			prova = conect.prepareStatement(sentencia);
 			
@@ -126,13 +126,14 @@ public class MySQLFirts {
 			prova.setString(4, this.postalDireccion);
 			prova.setString(5, this.sexo);
 			prova.setString(6, this.postalCode);
-			prova.setString(7, this.poblacion);
+			//prova.setString(7, this.poblacion);
 			
 			prova.executeUpdate();  // sentencia para modificar a la tabla luego de todos los valores pertinentes
 			
 			
 			System.out.println(" CONEXION REALIZADA !!!");
 			
+			conect.close();
 			
 		} catch (Exception e) {
 			System.out.println(" NO REALIZADA");
@@ -164,12 +165,12 @@ public class MySQLFirts {
 				System.out.print(" DIRECCION POSTAL : " + tables.getString(4));
 				System.out.print(" SEXO : " + tables.getString(5));
 				System.out.print(" CODIGO POSTAL : " + tables.getInt(6));
-				System.out.print(" POBLACION : " + tables.getString(7));
+				//System.out.print(" POBLACION : " + tables.getString(7));
 				
 				System.out.println(" ");
 			}
 			
-			
+			conect.close();
 			
 		} catch (Exception e) {
 			
@@ -184,7 +185,7 @@ public class MySQLFirts {
 		
 		try {
 			
-			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+				conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 				
 			//if (col.equalsIgnoreCase("NOMBRE")) {
 			
@@ -204,6 +205,9 @@ public class MySQLFirts {
 				prova.executeUpdate();
 				
 				System.out.println("SENTENCIA REALIZADA");
+				
+				conect.close();
+				
 			//}
 		
 		} catch (Exception e) {
@@ -271,16 +275,16 @@ public void metodoBorrar (String elemento, String column) {
 				prova.setString(6, this.postalCode);
 				prova.executeUpdate();
 				System.out.println(" elemento eliminado");
-			} 
-			else if (column.equalsIgnoreCase("poblacion")) {
+			}
+			/*else if (column.equalsIgnoreCase("poblacion")) {
 				String sentencia = "DELETE FROM ALUMNE WHERE POBLATION = ?;";
 				prova = conect.prepareStatement(sentencia);
 				this.poblacion = elemento;
 				prova.setString(7, this.poblacion);
 				prova.executeUpdate();
 				System.out.println(" elemento eliminado");
-	
-		} else {
+				*/
+		 else {
 			System.out.println(" elemento no eliminado o inexistente, vuelva a intentarlo");
 		}
 		
@@ -460,6 +464,10 @@ public void metodoVerificaElemento (String elem, String elem1) {
 		} else {
 			System.out.println("elemento o columna inválida, verifique");
 		}
+		
+		
+		conect.close();
+		
 	} catch (Exception e) {
 		//System.out.println("consulta no realizada");
 		}
@@ -471,7 +479,7 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 
-			String sentencia = " INSERT INTO POBLACION (CODI_POSTAL, POBLACION) VALUES ( ?, ?);";
+			String sentencia = " INSERT INTO POBLACION (POSTAL_CODE, POBLACION) VALUES ( ?, ?);";
 			
 			prova = conect.prepareStatement(sentencia);
 			
@@ -481,6 +489,9 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			prova.executeUpdate();
 			
 			System.out.println(" EXITOSAMENTE CREADA");
+			
+			conect.close();
+			
 		} catch (Exception e) {
 			
 			System.out.println(" no creada");
