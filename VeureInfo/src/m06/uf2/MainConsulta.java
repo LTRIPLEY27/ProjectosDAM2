@@ -23,11 +23,12 @@ public class MainConsulta {
 		
 		System.out.println("ingrese la opcion de su preferencia: " + '\n' + 
 				"desea insertar alumno (1)" + '\n' + " desea modificar alumno (2)" + '\n' +
-				"desea eliminar alumno  (3)" +  '\n' + " realizar alguna consulta sobre un elemento (4)" + '\n' + "crear tabla poblacion (5)" + '\n' + "salir (6)");
+				"desea eliminar alumno  (3)" +  '\n' + " realizar alguna consulta sobre un elemento (4)" + '\n' 
+				+ "crear tabla poblacion (5)" + '\n'  + " eliminar poblacion (6)" + '\n' + "salir (7)");
 		
 		opcion = ask.nextInt();
 		
-		while (opcion < 6) {
+		while (opcion < 7) {
 			switch (opcion) {
 			
 			case 1:
@@ -110,10 +111,20 @@ public class MainConsulta {
 				code = ask.next();
 				
 				tabla.crearPoblacion(code, pobl);
+				
+				tabla.consultaPoblacion();
 				tabla.mostrarPoblacion();
 				
 				break;
 				
+			case 6:
+				String eli;
+				System.out.println(" ingrese el codigo de la poblacion que desea eliminar");
+				eli = ask.next();
+				
+				tabla.eliminaPoblacion(eli);
+				
+				tabla.mostrarPoblacion();
 			default :
 				System.out.println(" OPCION NO VALIDA, INTENTE NUEVAMENTE");
 			}

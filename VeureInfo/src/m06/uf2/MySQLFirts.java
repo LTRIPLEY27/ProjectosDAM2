@@ -524,4 +524,57 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			System.out.println("no se puede mostrar la tabla, revise los errores");
 		}
 	}
+	
+	
+	// método consulta de la poblacion
+	public void consultaPoblacion () {
+		
+		try {
+			
+			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+
+			String sentencia = "SELECT A.NOM, A.POSTAL_DIRECTION FROM alumne A JOIN poblacion P ON (A.POSTAL_CODE = P.POSTAL_CODE) ";
+			
+			prova = conect.prepareStatement(sentencia);
+			
+			// prova
+			
+			tables = prova.executeQuery();
+			
+			while (tables.next()) {
+				System.out.println(tables.getString(1));
+				System.out.println(tables.getString(2));
+			}
+			
+			conect.close();
+			
+		} catch (Exception e) {
+			System.out.println(" no se puede consultar la tabla");
+		}
+	}
+	
+	
+	// método para eliminar a la poblacion
+	
+	public void eliminaPoblacion (String eli) {
+		
+		try {
+			
+			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+
+			String sentencia = " DELETE FROM POBLACION WHERE POSTAL_CODE = ?";
+			
+			prova = conect.prepareStatement(sentencia);
+			
+			prova.setString(1, eli);
+			
+			prova.executeUpdate();
+			
+			System.out.println("ELIMINADA");
+			
+		} catch (Exception e) {
+			
+			System.out.println("no se ha podido eliminar");
+		}
+	}
 }	
