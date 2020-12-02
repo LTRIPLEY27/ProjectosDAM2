@@ -497,4 +497,31 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			System.out.println(" no creada");
 		}
 	}
+	
+	public void mostrarPoblacion () {
+		
+		try {
+			
+			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+
+			String sentencia = ("SELECT * FROM POBLACION");
+			
+			prova = conect.prepareStatement(sentencia);
+			
+			tables = prova.executeQuery();
+			
+			while (tables.next()) {
+				
+				System.out.println(" Código postal : " + tables.getString(1));
+				System.out.println(" Población : " + tables.getString(2));
+				System.out.println();
+			}
+			
+			conect.close();  // cierre del flujo
+			
+		} catch (Exception e) {
+			
+			System.out.println("no se puede mostrar la tabla, revise los errores");
+		}
+	}
 }	

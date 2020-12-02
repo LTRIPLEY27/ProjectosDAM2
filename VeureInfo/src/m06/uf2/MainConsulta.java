@@ -110,6 +110,7 @@ public class MainConsulta {
 				code = ask.next();
 				
 				tabla.crearPoblacion(code, pobl);
+				tabla.mostrarPoblacion();
 				
 				break;
 				
