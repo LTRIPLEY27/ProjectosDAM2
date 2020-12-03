@@ -1,5 +1,9 @@
 package m3.uf5Actividad1;
-
+/*
+ * Nom = Maria Isabel Calzadilla
+ * Date = 03-12-2020
+ * Activity = Actividad 1 uf5
+ */
 public class MainSuma {
 
 	public static void main(String[] args) {
