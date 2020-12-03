@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 public class MySQLFirts {
 	
@@ -561,20 +562,68 @@ public void metodoVerificaElemento (String elem, String elem1) {
 		try {
 			
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
-
+			
+			Scanner ask = new Scanner (System.in);
+			
+			String respuesta;
+			
 			String sentencia = " DELETE FROM POBLACION WHERE POSTAL_CODE = ?";
 			
 			prova = conect.prepareStatement(sentencia);
 			
-			prova.setString(1, eli);
+			//if (verificaCodigo(eli)) {
+				
+				//System.out.println(" el código a eliminar lo dispone un alumno, si lo elimina, eliminará al alumno, desea continuar, marque 'y' para (sí) o 'n' para no ?");
+				
+				//respuesta = ask.next();
+				
+				//if (respuesta.equalsIgnoreCase("y") && verificaCodigo(eli)) {
+					
+					prova.setString(1, eli);
+					
+					prova.executeUpdate();
+					
+					//System.out.println("alumno eliminado");
+				//}
+				
+				//System.out.println("ELIMINADA");
+			//} else {
+				
+				System.out.println("ELIMINADA");
+			//}
 			
-			prova.executeUpdate();
-			
-			System.out.println("ELIMINADA");
 			
 		} catch (Exception e) {
 			
 			System.out.println("no se ha podido eliminar");
 		}
 	}
+	
+	public boolean verificaCodigo (String eli) {
+		
+		try {
+		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+
+		//boolean concuerda = true;
+		
+		
+		String sentencia = " SELECT A.POSTAL_CODE FROM ALUMNE A JOIN POBLACION P ON (A.POSTAL_CODE = P.POSTAL_CODE)";
+		
+		prova = conect.prepareStatement(sentencia);
+		
+		tables = prova.executeQuery();
+		
+		while (tables.next()) {
+			System.out.println(tables.getString(1));
+			return true;
+			
+			}
+		
+		} catch (Exception e) {
+			
+		}
+		return false;
+	}
+	
+	
 }	

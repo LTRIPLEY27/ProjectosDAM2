@@ -125,6 +125,11 @@ public class MainConsulta {
 				tabla.eliminaPoblacion(eli);
 				
 				tabla.mostrarPoblacion();
+				
+				tabla.verificaCodigo(eli);
+				
+				break;
+				
 			default :
 				System.out.println(" OPCION NO VALIDA, INTENTE NUEVAMENTE");
 			}
