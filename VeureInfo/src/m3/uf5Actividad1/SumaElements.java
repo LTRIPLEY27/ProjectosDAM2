@@ -1,5 +1,6 @@
 package m3.uf5Actividad1;
 
+import java.util.Arrays;
 public class SumaElements {
 
 	private int suma;
@@ -12,12 +13,9 @@ public class SumaElements {
 		
 		int x = 0;
 		
-		for (int i=0; i < arrayNumbers.length; i++) {
+	for (int i=0; i < arrayNumbers.length; i++) {
 			x = x + i;
 		}
-		
-		System.out.println(x);
-		
 		this.suma = x;
 	}
 	
