@@ -7,13 +7,14 @@ public class ReversiveNumbers{
 
 	// atributos
 	private String number;
-	private String reversive = " ";
+	private String reversive = "";
+	private int suma;
 	
 	public ReversiveNumbers (String num) {
 		
 		this.number = num;
 		
-		//this.reversive = this.number.toCharArray();
+		this.number.toCharArray();
 		
 	}
 	
@@ -27,17 +28,18 @@ public class ReversiveNumbers{
 		this.number = num;
 	}
 	
-	public void revierteNumero (String num) {
+	
+	// método para revertir el número
+	public void revierteNumero () {
 		
-		char x;
+		
 		String y = "";
 		
-		for (int i= num.length()-1; i >= 0; i--) {
-			y = y + num.charAt(i);
-			
-		}
-		
+		for (int i= this.number.length()-1; i >= 0; i--) {
+			y = y + this.number.charAt(i);	
+		}		
 		this.reversive = y;
+		this.reversive.toCharArray();
 	}
 	
 	public String getReversive () {
@@ -45,6 +47,43 @@ public class ReversiveNumbers{
 		
 	}
  	
+	public void convertReversive () {
+		
+		int x = 0;
+		
+		for (int i = 0; i < this.reversive.length(); i++) {
+			x = this.reversive.charAt(i);
+		}
+		
+		System.out.println(x);
+	}
+	/*public void sumaNumero() {
+		
+		char a;
+		char b;
+		int x =0;
+		int y = 0;
+		for (int i = 0; i < this.number.length(); i++) {
+			
+			
+			//this.suma[i] = this.number[i] + this.reversive[i];	
+			x = this.number.charAt(i);
+			//x = Character.getNumericValue(a);
+			
+			y = this.reversive.charAt(i);
+			//y = Character.getNumericValue(b);
+			
+			this.suma = x + y;
+			
+			System.out.println("la suma es " + this.suma);
+		}
+	}
+	
+	public int getSuma () {
+		return this.suma;
+		
+	}*/
+	
 	
 	//método para comrpbar si es verificable o no el numero
 	/*public void compruebaNumero () {

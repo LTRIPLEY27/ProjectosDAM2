@@ -15,18 +15,13 @@ public class MainTester {
 		// DEFINICION DEL OBJETO DE LA CLASE REVERSIVENUMBERS
 		ReversiveNumbers numero = new ReversiveNumbers (num);
 		
-		/*for (int i = 0; i < numero.length; i++) {
-			// CARGA DEL NÚMERO DENTRO DEL ARRAY 
-			System.out.println("ingrese el número : ");
-			num = ask.next();
-			
-			numero[i] = new ReversiveNumbers(num);
-		}*/
-		
-		
-		//System.out.println(numero.retorna());
-		
+		numero.revierteNumero();
 		System.out.println(numero.getReversive());
+		
+		//numero.sumaNumero();
+		
+		numero.convertReversive();
+	//System.out.println("la suma es " +  numero.convertReversive(););
 
 	}
 
