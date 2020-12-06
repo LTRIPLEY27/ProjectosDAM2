@@ -137,7 +137,7 @@ public class MySQLFirts {
 			conect.close();
 			
 		} catch (Exception e) {
-			System.out.println(" NO REALIZADA");
+			System.out.println(" NO REALIZADA, por favor verífique el código postal ya que es probable no sea válido");
 		}
 	}
 	
@@ -181,27 +181,26 @@ public class MySQLFirts {
 	
 	
 	// método para modificar datos en lab tabla
-	
-	public void metodoModificar(String eleccion, String nuevoValor) {
+	//, String igual    
+	public void metodoModificar(String col, String eleccion, String nuevoValor) {
 		
 		try {
 			
-				conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 				
-			//if (col.equalsIgnoreCase("NOMBRE")) {
+			if (col.equalsIgnoreCase("NOMBRE")) {
 			
 			
 			// PREGUNTAR PORQUÉ NO ACEPTA MAS DE 2 VALORES A EVALUAR PARA LA EDICION
-				//String columna = "NOM";
-				String sentencia = "UPDATE ALUMNE SET NOM = ? WHERE NACIMIENTO = ?;";
+								
+				String sentencia = "UPDATE ALUMNE SET NOMBRE = ? WHERE NACIMIENTO = ?;";
 										// 1er parámetro (nuevoValor)			// segundo parámetro (eleccion)
 				prova = conect.prepareStatement(sentencia);
 				
-				prova.setString(1, nuevoValor); // HAY QUE LLEVAR LA CORRELACION EXACTA DE LOS PARÁMETROS o da error
-				//prova.setString(2, nuevoValor);
-				prova.setString(2, eleccion);
-				
-				
+				prova.setString(1, eleccion);
+				prova.setString(2, nuevoValor);
+				//prova.setString(3, donde);
+				//prova.setString(4, igual); // HAY QUE LLEVAR LA CORRELACION EXACTA DE LOS PARÁMETROS o da error
 				
 				prova.executeUpdate();
 				
@@ -209,8 +208,77 @@ public class MySQLFirts {
 				
 				conect.close();
 				
-			//}
+			}
+			else if (col.equalsIgnoreCase("DNI")) {
+				
+			
+				String sentencia = "UPDATE ALUMNE SET DNI = ? WHERE NACIMIENTO = ?;";
+				
+				prova = conect.prepareStatement(sentencia);
+				
+				prova.setString(1, eleccion);
+				prova.setString(2, nuevoValor);
+				
+				prova.executeUpdate();
+				
+				System.out.println("SENTENCIA REALIZADA");
+				
+				conect.close();
 		
+			} 	else if (col.equalsIgnoreCase("NACIMIENTO")) {
+				
+			
+				String sentencia = "UPDATE ALUMNE SET NACIMIENTO = ? WHERE NACIMIENTO = ?;";
+				
+				prova = conect.prepareStatement(sentencia);
+				
+				prova.setString(1, eleccion);
+				prova.setString(2, nuevoValor);
+				
+				prova.executeUpdate();
+				
+				System.out.println("SENTENCIA REALIZADA");
+				
+				conect.close();
+			
+			} 	else if (col.equalsIgnoreCase("DIRECCION")) {
+				
+			
+				String sentencia = "UPDATE ALUMNE SET DIRECCION_POSTAL = ? WHERE NACIMIENTO = ?;";
+				
+				prova = conect.prepareStatement(sentencia);
+				
+				prova.setString(1, eleccion);
+				prova.setString(2, nuevoValor);
+				
+				prova.executeUpdate();
+				
+				System.out.println("SENTENCIA REALIZADA");
+				
+				conect.close(); 
+			} 	else if (col.equalsIgnoreCase("SEXO")) {
+				
+			
+				String sentencia = "UPDATE ALUMNE SET SEXO = ? WHERE NACIMIENTO = ?;";
+				
+				prova = conect.prepareStatement(sentencia);
+				
+				prova.setString(1, eleccion);
+				prova.setString(2, nuevoValor);
+				
+				prova.executeUpdate();
+				
+				System.out.println("SENTENCIA REALIZADA");
+				
+				conect.close();
+				
+			} else if (col.equalsIgnoreCase("POSTAL")) {
+				System.out.println(" la direccion Postal solo se puede modificar desde la tabla de POBLACION");
+			
+			} else {
+				System.out.println(" NO HA INDICADO BIEN LOS PARÁMETROS A MODIFICAR");
+			}
+			
 		} catch (Exception e) {
 			System.out.println(" no se ha logrado modificar la tabla");
 		}

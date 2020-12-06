@@ -21,7 +21,10 @@ public class MainTester {
 		//numero.sumaNumero();
 		
 		numero.convertReversive();
-	//System.out.println("la suma es " +  numero.convertReversive(););
+		
+		numero.convertReversive();
+		
+	System.out.println("la suma es " +  numero.getSuma());
 
 	}
 

@@ -64,15 +64,19 @@ public class MainConsulta {
 				String eleccion;
 				String col;
 				String nuevoValor;
-				//System.out.println(" ingrese la columna que desea modificar");
-				//col = ask.next();
+				
+				System.out.println("ingrese el nombre de la columna a la que desea editar el parámetro");
+				col = ask.next();
+				
 				System.out.println(" ingrese  la fila que desea modificar  ");
 				eleccion = ask.next();
+				
 				System.out.println(" ingrese el nuevo valor a modificar");
 				nuevoValor = ask.next();
-				tabla.metodoModificar( eleccion, nuevoValor);
+			
+				tabla.metodoModificar( col, eleccion, nuevoValor);
 				tabla.mostrarTabla();	
-				//}
+				
 				break;
 				
 			case 3:
