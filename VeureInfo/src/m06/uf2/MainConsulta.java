@@ -127,11 +127,14 @@ public class MainConsulta {
 				System.out.println(" ingrese el codigo de la poblacion que desea eliminar");
 				eli = ask.next();
 				
+				
 				tabla.eliminaPoblacion(eli);
 				
 				tabla.mostrarPoblacion();
 				
 				tabla.verificaCodigo(eli);
+				System.out.println(tabla.getVerificaCodigo());
+				//tabla.verificaCodigo(eli);
 				
 				break;
 				

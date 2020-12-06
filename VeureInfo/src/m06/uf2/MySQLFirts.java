@@ -25,6 +25,7 @@ public class MySQLFirts {
 	private String sexo;
 	private String postalCode;
 	//private String poblacion;
+	private String comproba;
 	
 
 // constructor
@@ -373,10 +374,6 @@ public void metodoVerificaElemento (String elem, String elem1) {
 	try {
 		
 		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
-									// no ejecuta mas de un parámetro
-		
-		
-		//if (elem.equalsIgnoreCase("nombre")) {
 		
 		String sentencia = "SELECT NOMBRE, DNI, NACIMIENTO, DIRECCION_POSTAL, SEXO, POSTAL_CODE  FROM ALUMNE WHERE ? = ?";
 		
@@ -384,7 +381,6 @@ public void metodoVerificaElemento (String elem, String elem1) {
 		
 		prova.setString(1, elem);
 		prova.setString(2, elem1);
-		//prova.setString(3, elem);
 		
 		tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
 		
@@ -398,150 +394,13 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			System.out.println(tables.getString(6));
 			System.out.println(tables.getString(7));
 			}
-		//}
-	/*	else if (elem.equalsIgnoreCase("dni")) {
-			
-			String sentencia = "SELECT NOMBRE, DNI, NACIMIENTO, DIRECCION_POSTAL, SEXO, POSTAL_CODE  FROM ALUMNE WHERE DNI = ?";
-			
-			prova = conect.prepareStatement(sentencia);
-			
-			prova.setString(1, elem1);
-			//prova.setString(2, elem2);
-			//prova.setString(3, elem);
-			
-			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
-			
-			while (tables.next()) {  //  
-				
-				System.out.println(tables.getString(1));
-				System.out.println(tables.getString(2));
-				System.out.println(tables.getString(3));
-				System.out.println(tables.getString(4));
-				System.out.println(tables.getString(5));
-				System.out.println(tables.getString(6));
-				System.out.println(tables.getString(7));
-			}
-		}
-		if (elem.equalsIgnoreCase("nacimiento")) {
-			
-			String sentencia = "SELECT NOM, DNI, NACIMIENTO, DIRECCION_POSTAL, SEXO, POSTAL_CODE  FROM ALUMNE WHERE NACIMIENTO = ?";
-			
-			prova = conect.prepareStatement(sentencia);
-			
-			prova.setString(1, elem1);
-			//prova.setString(2, elem2);
-			//prova.setString(3, elem);
-			
-			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
-			
-			while (tables.next()) {  //  
-				
-				System.out.println(tables.getString(1));
-				System.out.println(tables.getString(2));
-				System.out.println(tables.getString(3));
-				System.out.println(tables.getString(4));
-				System.out.println(tables.getString(5));
-				System.out.println(tables.getString(6));
-				System.out.println(tables.getString(7));
-			}
-		} if (elem.equalsIgnoreCase("direccion")) {
-			
-			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE POSTAL_DIRECTION = ?";
-			
-			prova = conect.prepareStatement(sentencia);
-			
-			prova.setString(1, elem1);
-			//prova.setString(2, elem2);
-			//prova.setString(3, elem);
-			
-			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
-			
-			while (tables.next()) {  //  
-				
-				System.out.println(tables.getString(1));
-				System.out.println(tables.getString(2));
-				System.out.println(tables.getString(3));
-				System.out.println(tables.getString(4));
-				System.out.println(tables.getString(5));
-				System.out.println(tables.getString(6));
-				System.out.println(tables.getString(7));
-			}
-		} if (elem.equalsIgnoreCase("sexo")) {
-			
-			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE SEX = ?";
-			
-			prova = conect.prepareStatement(sentencia);
-			
-			prova.setString(1, elem1);
-			//prova.setString(2, elem2);
-			//prova.setString(3, elem);
-			
-			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
-			
-			while (tables.next()) {  //  
-				
-				System.out.println(tables.getString(1));
-				System.out.println(tables.getString(2));
-				System.out.println(tables.getString(3));
-				System.out.println(tables.getString(4));
-				System.out.println(tables.getString(5));
-				System.out.println(tables.getString(6));
-				System.out.println(tables.getString(7));
-			}	
-		}if (elem.equalsIgnoreCase("CODIGO")) {
-			
-			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE POSTAL_CODE = ?";
-			
-			prova = conect.prepareStatement(sentencia);
-			
-			prova.setString(1, elem1);
-			//prova.setString(2, elem2);
-			//prova.setString(3, elem);
-			
-			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
-			
-			while (tables.next()) {  //  
-				
-				System.out.println(tables.getString(1));
-				System.out.println(tables.getString(2));
-				System.out.println(tables.getString(3));
-				System.out.println(tables.getString(4));
-				System.out.println(tables.getString(5));
-				System.out.println(tables.getString(6));
-				System.out.println(tables.getString(7));
-			}
-		}if (elem.equalsIgnoreCase("POBLACION")) {
-			
-			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE POBLACION = ?";
-			
-			prova = conect.prepareStatement(sentencia);
-			
-			prova.setString(1, elem1);
-			
-			tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
-			
-			while (tables.next()) {  //  
-									// CON EL ResultSet se obiene unoa a uno las columnas 
-				System.out.println(tables.getString(1));
-				System.out.println(tables.getString(2));
-				System.out.println(tables.getString(3));
-				System.out.println(tables.getString(4));
-				System.out.println(tables.getString(5));
-				System.out.println(tables.getString(6));
-				System.out.println(tables.getString(7));
-			}
-		} else {
-			System.out.println("elemento o columna inválida, verifique");
-		}
-		
-		
-		conect.close();
-		
+	
 	} catch (Exception e) {
 		//System.out.println("consulta no realizada");
 		}
 	}
 
+// método de insercion de tabla poblacion
 	public void crearPoblacion(String code, String pobl) {
 		
 		try {
@@ -559,7 +418,7 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			
 			System.out.println(" EXITOSAMENTE CREADA");
 			
-			conect.close(); */
+			conect.close(); 
 			
 		} catch (Exception e) {
 			
@@ -567,6 +426,7 @@ public void metodoVerificaElemento (String elem, String elem1) {
 		}
 	}
 	
+	// método de muestra de la tabla poblacion
 	public void mostrarPoblacion () {
 		
 		try {
@@ -639,26 +499,28 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			
 			prova = conect.prepareStatement(sentencia);
 			
-			//if (verificaCodigo(eli)) {
+			if (eli.compareTo(this.comproba))) {
 				
-				//System.out.println(" el código a eliminar lo dispone un alumno, si lo elimina, eliminará al alumno, desea continuar, marque 'y' para (sí) o 'n' para no ?");
+				System.out.println(" el código a eliminar lo dispone un alumno, si lo elimina, eliminará al alumno, desea continuar, marque 'y' para (sí) o 'n' para no ?");
 				
-				//respuesta = ask.next();
+				respuesta = ask.next();
 				
-				//if (respuesta.equalsIgnoreCase("y") && verificaCodigo(eli)) {
+				if (respuesta.equalsIgnoreCase("y")) {
 					
 					prova.setString(1, eli);
 					
 					prova.executeUpdate();
 					
-					//System.out.println("alumno eliminado");
-				//}
+					System.out.println("alumno eliminado");
+				}
+				else {
+					System.out.println("no eliminado");
+				}
+			
+			} else {
 				
-				//System.out.println("ELIMINADA");
-			//} else {
-				
-				System.out.println("ELIMINADA");
-			//}
+				System.out.println("REHAGA LA CONSULTA");
+			}
 			
 			
 		} catch (Exception e) {
@@ -667,13 +529,10 @@ public void metodoVerificaElemento (String elem, String elem1) {
 		}
 	}
 	
-	public boolean verificaCodigo (String eli) {
+	public void verificaCodigo (String eli) {
 		
 		try {
 		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
-
-		//boolean concuerda = true;
-		
 		
 		String sentencia = " SELECT A.POSTAL_CODE FROM ALUMNE A JOIN POBLACION P ON (A.POSTAL_CODE = P.POSTAL_CODE)";
 		
@@ -682,24 +541,20 @@ public void metodoVerificaElemento (String elem, String elem1) {
 		tables = prova.executeQuery();
 		
 		while (tables.next()) {
-			System.out.println(tables.getString(1));
-			return true;
 			
+			System.out.println(tables.getString(1));
+
+			this.comproba = tables.getString(1);
 			}
 		
 		} catch (Exception e) {
 			
 		}
-		return false;
+
 	}
 
-
-
-
-	public void crearPoblacion(String code, String pobl) {
-		// TODO Auto-generated method stub
-		
+	public String getVerificaCodigo () {
+		return this.comproba;
 	}
-	
 	
 }	
