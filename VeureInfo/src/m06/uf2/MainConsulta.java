@@ -71,7 +71,7 @@ public class MainConsulta {
 				System.out.println(" ingrese  la fila que desea modificar  ");
 				eleccion = ask.next();
 				
-				System.out.println(" ingrese el nuevo valor a modificar");
+				System.out.println(" ingrese el nuevo valor a modificar tomando como parámetro EL DNI");
 				nuevoValor = ask.next();
 			
 				tabla.metodoModificar( col, eleccion, nuevoValor);
@@ -104,6 +104,7 @@ public class MainConsulta {
 				elem1 = ask.next();
 				
 				tabla.metodoVerificaElemento(elem, elem1);
+				tabla.mostrarTabla();
 				break;
 				
 			case 5:

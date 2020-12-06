@@ -117,7 +117,7 @@ public class MySQLFirts {
 			// clase mysql para controlar la base de datos
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 			// variable a usar en la clase connection con la sentencia que se desee agregar					//, POBLACION  (SE ELIMINO POBLACION)
-			String sentencia = "INSERT INTO ALUMNE (NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE) VALUES (?,?,?,?,?,?)";
+			String sentencia = "INSERT INTO ALUMNE (NOMBRE, DNI, NACIMIENTO, DIRECCION_POSTAL, SEXO, POSTAL_CODE) VALUES (?,?,?,?,?,?)";
 			// instancia de la clase PreparedStatement para dinamizar la tabla de la base de datos (IMPERATIVO SI SE VA A EDITAR O AGREGAR VALORES A LA MISMA)
 			prova = conect.prepareStatement(sentencia);
 			
@@ -193,7 +193,7 @@ public class MySQLFirts {
 			
 			// PREGUNTAR PORQUÉ NO ACEPTA MAS DE 2 VALORES A EVALUAR PARA LA EDICION
 								
-				String sentencia = "UPDATE ALUMNE SET NOMBRE = ? WHERE NACIMIENTO = ?;";
+				String sentencia = "UPDATE ALUMNE SET NOMBRE = ? WHERE DNI = ?;";
 										// 1er parámetro (nuevoValor)			// segundo parámetro (eleccion)
 				prova = conect.prepareStatement(sentencia);
 				
@@ -212,7 +212,7 @@ public class MySQLFirts {
 			else if (col.equalsIgnoreCase("DNI")) {
 				
 			
-				String sentencia = "UPDATE ALUMNE SET DNI = ? WHERE NACIMIENTO = ?;";
+				String sentencia = "UPDATE ALUMNE SET DNI = ? WHERE DNI = ?;";
 				
 				prova = conect.prepareStatement(sentencia);
 				
@@ -228,7 +228,7 @@ public class MySQLFirts {
 			} 	else if (col.equalsIgnoreCase("NACIMIENTO")) {
 				
 			
-				String sentencia = "UPDATE ALUMNE SET NACIMIENTO = ? WHERE NACIMIENTO = ?;";
+				String sentencia = "UPDATE ALUMNE SET NACIMIENTO = ? WHERE DNI = ?;";
 				
 				prova = conect.prepareStatement(sentencia);
 				
@@ -244,7 +244,7 @@ public class MySQLFirts {
 			} 	else if (col.equalsIgnoreCase("DIRECCION")) {
 				
 			
-				String sentencia = "UPDATE ALUMNE SET DIRECCION_POSTAL = ? WHERE NACIMIENTO = ?;";
+				String sentencia = "UPDATE ALUMNE SET DIRECCION_POSTAL = ? WHERE DNI = ?;";
 				
 				prova = conect.prepareStatement(sentencia);
 				
@@ -259,7 +259,7 @@ public class MySQLFirts {
 			} 	else if (col.equalsIgnoreCase("SEXO")) {
 				
 			
-				String sentencia = "UPDATE ALUMNE SET SEXO = ? WHERE NACIMIENTO = ?;";
+				String sentencia = "UPDATE ALUMNE SET SEXO = ? WHERE DNI = ?;";
 				
 				prova = conect.prepareStatement(sentencia);
 				
@@ -298,7 +298,7 @@ public void metodoBorrar (String elemento, String column) {
 		
 	//	prova = conect.prepareStatement(sentencia);
 		if (column.equalsIgnoreCase("nombre")) {
-			String sentencia = "DELETE FROM ALUMNE WHERE NOM = ?;";
+			String sentencia = "DELETE FROM ALUMNE WHERE NOMBRE = ?;";
 			prova = conect.prepareStatement(sentencia);
 			this.nombre = elemento;
 			prova.setString(1, this.nombre);
@@ -322,7 +322,7 @@ public void metodoBorrar (String elemento, String column) {
 				System.out.println(" elemento eliminado");
 			} 
 			else if (column.equalsIgnoreCase("direccion")) {
-				String sentencia = "DELETE FROM ALUMNE WHERE POSTAL_DIRECTION = ?;";
+				String sentencia = "DELETE FROM ALUMNE WHERE DIRECCION_POSTAL = ?;";
 				prova = conect.prepareStatement(sentencia);
 				this.postalDireccion = elemento;
 				prova.setString(4, this.postalDireccion);
@@ -330,7 +330,7 @@ public void metodoBorrar (String elemento, String column) {
 				System.out.println(" elemento eliminado");
 			}
 			else if (column.equalsIgnoreCase("sexo")) {
-				String sentencia = "DELETE FROM ALUMNE WHERE SEX = ?;";
+				String sentencia = "DELETE FROM ALUMNE WHERE SEXO = ?;";
 				prova = conect.prepareStatement(sentencia);
 				this.sexo = elemento;
 				prova.setString(5, this.sexo);
@@ -376,14 +376,14 @@ public void metodoVerificaElemento (String elem, String elem1) {
 									// no ejecuta mas de un parámetro
 		
 		
-		if (elem.equalsIgnoreCase("nombre")) {
+		//if (elem.equalsIgnoreCase("nombre")) {
 		
-		String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE NOM = ?";
+		String sentencia = "SELECT NOMBRE, DNI, NACIMIENTO, DIRECCION_POSTAL, SEXO, POSTAL_CODE  FROM ALUMNE WHERE ? = ?";
 		
 		prova = conect.prepareStatement(sentencia);
 		
-		prova.setString(1, elem1);
-		//prova.setString(2, elem2);
+		prova.setString(1, elem);
+		prova.setString(2, elem1);
 		//prova.setString(3, elem);
 		
 		tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
@@ -398,10 +398,10 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			System.out.println(tables.getString(6));
 			System.out.println(tables.getString(7));
 			}
-		}
-		else if (elem.equalsIgnoreCase("dni")) {
+		//}
+	/*	else if (elem.equalsIgnoreCase("dni")) {
 			
-			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE DNI = ?";
+			String sentencia = "SELECT NOMBRE, DNI, NACIMIENTO, DIRECCION_POSTAL, SEXO, POSTAL_CODE  FROM ALUMNE WHERE DNI = ?";
 			
 			prova = conect.prepareStatement(sentencia);
 			
@@ -424,7 +424,7 @@ public void metodoVerificaElemento (String elem, String elem1) {
 		}
 		if (elem.equalsIgnoreCase("nacimiento")) {
 			
-			String sentencia = "SELECT NOM, DNI, NACIMIENTO, POSTAL_DIRECTION, SEX, POSTAL_CODE, POBLACION  FROM ALUMNE WHERE NACIMIENTO = ?";
+			String sentencia = "SELECT NOM, DNI, NACIMIENTO, DIRECCION_POSTAL, SEXO, POSTAL_CODE  FROM ALUMNE WHERE NACIMIENTO = ?";
 			
 			prova = conect.prepareStatement(sentencia);
 			
@@ -559,7 +559,7 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			
 			System.out.println(" EXITOSAMENTE CREADA");
 			
-			conect.close();
+			conect.close(); */
 			
 		} catch (Exception e) {
 			
@@ -691,6 +691,14 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			
 		}
 		return false;
+	}
+
+
+
+
+	public void crearPoblacion(String code, String pobl) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
