@@ -32,20 +32,57 @@ public class ReversiveNumbers{
 	
 	// método para revertir el número
 	public void revierteNumero () {
-		//String y = "";
 		
 		for (int i= this.number.length()-1; i >= 0; i--) {
 			this.reversive = this.reversive + this.number.charAt(i);	
 		}		
-		//this.reversive = y;
-		//this.reversive.toCharArray();
+	
 	}
 	
 	public String getReversive () {
-		return this.reversive;
+		return this.reversive;		
+	}
+	
+	/*
+	public void setSum () {
 		
+		char c;
+		char b;
+		int x;
+		int y;
+		
+		int n;
+		
+		int sum = 0;
+		
+		for (int i = 0; i < this.number.length(); i ++ ) {
+			for (int j = 0; j < this.reversive.length(); j++ ) {
+				c = this.number.charAt(i);
+				b = this.reversive.charAt(j);
+				x = Character.getNumericValue(c);
+				y = Character.getNumericValue(b);
+				
+				sum = x + y;
+				
+			}
+		}
+			if (sum % 2 > 0) {
+				System.out.println(" impar");
+					this.suma = sum;
+			} else {
+				System.out.println("par");
+					this.suma = sum;
+		}
+
+	}
+	
+	public int getSuma () {
+		return this.suma;
 	}
  	
+ 	*/
+	
+	
 	// método para convertir los Strings en integers mediante la clase parseInt
 	//PREGUNTAR SI APLICA DE ESTA MANERA O SEPARANDO CARACTER A CARÁCTER
 	public void convertReversive () {
@@ -53,58 +90,24 @@ public class ReversiveNumbers{
 		int x = Integer.parseInt(this.number);
 		int y = Integer.parseInt(this.reversive);
 		
-		this.suma = x + y;
-		
+		this.suma = x + y;	
 	}
 	
 	public int getSuma () {
 		return this.suma;
-		
 	}
-	
-	public void setVerfi() {
-		
-		char 
-		//this.ver = (char[])this.suma;
-	}
-	
-	/*public void sumaNumero() {
-		
-		char a;
-		char b;
-		int x =0;
-		int y = 0;
-		for (int i = 0; i < this.number.length(); i++) {
-			
-			
-			//this.suma[i] = this.number[i] + this.reversive[i];	
-			x = this.number.charAt(i);
-			//x = Character.getNumericValue(a);
-			
-			y = this.reversive.charAt(i);
-			//y = Character.getNumericValue(b);
-			
-			this.suma = x + y;
-			
-			System.out.println("la suma es " + this.suma);
-		}
-	}
-	
-	public int getSuma () {
-		return this.suma;
-		
-	}*/
-	
 	
 	//método para comprobar si es verificable o no el numero
+	
+	// hago uso del método String valueOf() para convertir la int suma en String y verificar dígito a díto si es para o no
 	public void compruebaNumero () {
+					// se hace mencion al String como clase y no a la variable 
+		String aux = String.valueOf(this.suma);   // método que conviente en String el valor de un int
 		
-		boolean reversible = false;
-		boolean sumaImpar = false;
-		int x = 0;
+		//StringBuffer append (this.suma);
 		
-		if (this.suma / 2 != 0) {
-			sumaImpar = true;
 		}
 	
+
+
 }

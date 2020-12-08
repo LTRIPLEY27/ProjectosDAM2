@@ -18,11 +18,11 @@ public class MainTester {
 		numero.revierteNumero();
 		System.out.println(numero.getReversive());
 		
-		//numero.sumaNumero();
+		numero.setSum();;
 		
-		numero.convertReversive();
+		//numero.convertReversive();
 		
-		numero.convertReversive();
+		//numero.convertReversive();
 		
 	System.out.println("la suma es " +  numero.getSuma());
 
