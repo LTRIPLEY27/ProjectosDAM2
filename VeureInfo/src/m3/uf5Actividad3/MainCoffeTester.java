@@ -16,24 +16,28 @@ public class MainCoffeTester {
 		double num;
 		Scanner ask = new Scanner (System.in);
 		//15
-		CoffeTester [] arrayCoffe = new CoffeTester[3];
+		int o;
+		System.out.println("indique cuantos valores desea almacenar");
+		o = ask.nextInt();
+		ask.nextLine();
+		
+		// objeto arrayCoffe del tipo CoffeTester
+		CoffeTester arrayCoffe = new CoffeTester(o);
 		
 		// carga de datos manual del array
-		for (int i = 0; i < arrayCoffe.length; i++) {
+		for (int i = 0; i < arrayCoffe.getLongitud(); i++) {
 			System.out.println(" ingrese los valores de PH a almacenar");
 			num = ask.nextDouble();
+			ask.nextLine();
 			
-			arrayCoffe[i] = new CoffeTester (num);
+			// refiere al método add donde le pasamos por parámetro el indice y el número
+			arrayCoffe.add(i, num);
+			System.out.println(" n n ");
+			//arrayCoffe[i] = num;
 		}
 		
-		// impresion del array mediante un toString
-		for (int i = 0; i < arrayCoffe.length; i ++) {
-			System.out.println(arrayCoffe[i].toString());
-		}
-		
-		double maxValor = CoffeTester.findMax();
-		
-		System.out.println(maxValor);
+		System.out.println(arrayCoffe.findMax());
 	
 
+	}
 }
