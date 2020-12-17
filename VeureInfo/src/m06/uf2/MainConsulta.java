@@ -24,11 +24,12 @@ public class MainConsulta {
 		System.out.println("ingrese la opcion de su preferencia: " + '\n' + 
 				"desea insertar alumno (1)" + '\n' + "desea modificar alumno (2)" + '\n' +
 				"desea eliminar alumno  (3)" +  '\n' + "realizar alguna consulta sobre un elemento (4)" + '\n' 
-				+ "crear tabla poblacion (5)" + '\n'  + "eliminar poblacion (6)" + '\n' + "salir (7)");
+				+ "crear tabla poblacion (5)" + '\n'  + "modificar poblacion (6)" + '\n' + "eliminar poblacion (7)" + '\n' 
+				+ "salir (8)");
 		
 		opcion = ask.nextInt();
 		
-		while (opcion < 7) {
+		while (opcion < 8) {
 			switch (opcion) {
 			
 			case 1:
@@ -71,10 +72,10 @@ public class MainConsulta {
 				System.out.println("ingrese el nombre de la columna a la que desea editar el parámetro");
 				col = ask.next();
 				
-				System.out.println(" ingrese  la fila que desea modificar  ");
+				System.out.println(" ingrese  el nuevo valor que desea modificar  ");
 				eleccion = ask.next();
 				
-				System.out.println(" ingrese el nuevo valor a modificar tomando como parámetro EL DNI");
+				System.out.println(" ingrese el DNI de la fila a modificar");
 				nuevoValor = ask.next();
 			
 				tabla.metodoModificar( col, eleccion, nuevoValor);
@@ -126,10 +127,27 @@ public class MainConsulta {
 				break;
 				
 			case 6:
+				
+				String poblatName;
+				String neu;
+				String clau;
+				
+				System.out.println("ingrese el nombre de la columna que desea modificar");
+				poblatName = ask.next();
+				
+				System.out.println("ingrese el nombre de la nueva poblacion");
+				neu = ask.next();
+				
+				System.out.println("ingrese el codigo postal de la poblacion a modificar");
+				clau = ask.next();
+				
+				tabla.mostrarPoblacion();
+				
+				break;
+			case 7:
 				String eli;
 				System.out.println(" ingrese el codigo de la poblacion que desea eliminar");
 				eli = ask.next();
-				
 				
 				tabla.eliminaPoblacion(eli);
 				
