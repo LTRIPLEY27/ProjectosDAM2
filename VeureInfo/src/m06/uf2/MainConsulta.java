@@ -8,13 +8,13 @@ public class MainConsulta {
 	
 		Scanner ask = new Scanner (System.in);
 		
-		String name, ident, agno,  direct, sex, postal, pobla;
+		String name, lastname, ident, agno,  direct, sex, postal, pobla;
 		
 		boolean respuesta = false;
 		
 		int opcion;
 		
-		MySQLFirts tabla = new MySQLFirts (null, null, null, null, null, null);
+		MySQLFirts tabla = new MySQLFirts (null, null, null, null, null, null, null);
 		
 		System.out.println("la tabla sobre la que se trabaja es la siguiente");
 		tabla.mostrarTabla();
@@ -22,9 +22,9 @@ public class MainConsulta {
 		
 		
 		System.out.println("ingrese la opcion de su preferencia: " + '\n' + 
-				"desea insertar alumno (1)" + '\n' + " desea modificar alumno (2)" + '\n' +
-				"desea eliminar alumno  (3)" +  '\n' + " realizar alguna consulta sobre un elemento (4)" + '\n' 
-				+ "crear tabla poblacion (5)" + '\n'  + " eliminar poblacion (6)" + '\n' + "salir (7)");
+				"desea insertar alumno (1)" + '\n' + "desea modificar alumno (2)" + '\n' +
+				"desea eliminar alumno  (3)" +  '\n' + "realizar alguna consulta sobre un elemento (4)" + '\n' 
+				+ "crear tabla poblacion (5)" + '\n'  + "eliminar poblacion (6)" + '\n' + "salir (7)");
 		
 		opcion = ask.nextInt();
 		
@@ -34,6 +34,9 @@ public class MainConsulta {
 			case 1:
 				System.out.println(" ingrese nombre");
 				name = ask.next();
+				
+				System.out.println(" ingrese apellido");
+				lastname = ask.next();
 				
 				System.out.println(" ingrese DNI");
 				ident = ask.next();
@@ -54,7 +57,7 @@ public class MainConsulta {
 				//pobla = ask.next();
 
 				
-				MySQLFirts nueva = new MySQLFirts (name , ident, agno, direct, sex, postal);
+				MySQLFirts nueva = new MySQLFirts (name , lastname, ident, agno, direct, sex, postal);
 			
 				nueva.metodoInsertar();
 				nueva.mostrarTabla();
