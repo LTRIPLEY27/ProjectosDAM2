@@ -141,6 +141,7 @@ public class MainConsulta {
 				System.out.println("ingrese el codigo postal de la poblacion a modificar");
 				clau = ask.next();
 				
+				tabla.modificaPoblacion( poblatName, neu, clau);
 				tabla.mostrarPoblacion();
 				
 				break;

@@ -494,47 +494,45 @@ public void metodoVerificaElemento (String elem, String elem1) {
 	public void modificaPoblacion (String poblatName, String neu, String clau) {
 
 		try {
-			
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 			
-			if (poblatName.equalsIgnoreCase("POBLACION")) {
-				String sentencia1 = ("UPDATE POBLACION SET POBLACION = ? WHERE POSTAL_CODE = ?;");
+			if (poblatName.equalsIgnoreCase("poblacion")) {
+				String sentencia = " UPDATE POBLACION SET POBLACION = ? WHERE POSTAL_CODE = ? ";
 			
-				prova = conect.prepareStatement(sentencia1);
+				prova = conect.prepareStatement(sentencia);
 			
 				prova.setString(1, neu);
+			
 				prova.setString(2, clau);
 			
 				prova.executeUpdate();
 			
-				System.out.println("SENTENCIA REALIZADA");
+				System.out.println("realizada");
 			
 				conect.close();
+		} else {
+				String sentencia = " UPDATE POBLACION SET POSTAL_CODE = ? WHERE POBLACION = ? ";
 			
-			} else if (poblatName.equalsIgnoreCase("CODIGO")) {
-					String sentecia = (" UPDATE POBLACION SET POSTAL_CODE = ? WHERE POBLACION = ?; ");
-					
-					prova = conect.prepareStatement(sentecia);
-					
-					prova.setString(1, neu);
-					prova.setString(2, clau);
-					
-					prova.executeUpdate();
-					
-					System.out.println("SENTENCIA REALIZADA");
-					
-					conect.close();
-			} 
-			else {
-				System.out.println("opción no admitida");
-			}
-			
-		} catch (SQLException e) {
-			System.out.println("failure");
-			e.printStackTrace();
+				prova = conect.prepareStatement(sentencia);
+		
+				prova.setString(1, clau);
+		
+				prova.setString(2, neu);
+		
+				prova.executeUpdate();
+		
+				System.out.println("realizada");
+		
+				conect.close();
 		}
+			} catch (Exception e) {
+				System.out.println("no realizada");
+			}
 
-	}
+		}
+	
+	
+
 	
 	// método consulta de la poblacion
 	public void consultaPoblacion () {
