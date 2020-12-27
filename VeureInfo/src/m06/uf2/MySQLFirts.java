@@ -28,7 +28,6 @@ public class MySQLFirts {
 	private String postalCode;
 	//private String poblacion;
 	private String comproba;
-	
 
 // constructor
 	public MySQLFirts (String name, String lastname, String ident, String agno, String direct, String sex, String postal) {
@@ -403,6 +402,132 @@ public void metodoBorrar (String elemento, String column) {
 	}
 
 
+// método consulta sore una columna específica de la tabla
+public void metodoConsultaSobreunElemento (String sen1) {
+	
+	try {
+		
+		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
+		
+		if (sen1.equalsIgnoreCase("NOMBRE")) {
+			
+			String sentencia = "SELECT NOMBRE FROM ALUMNE";
+			
+			table = conect.createStatement();
+			
+			tables = table.executeQuery(sentencia);
+			
+			while (tables.next()) {
+				System.out.println("los nombres almacenados en la tabla alumne son los que siguen: ");
+				System.out.println(tables.getString(1));
+				
+			}
+		}
+		
+		else if (sen1.equalsIgnoreCase("APELLIDO")) {
+			
+			String sentencia = "SELECT APELLIDO FROM ALUMNE";
+			
+			table = conect.createStatement();
+			
+			tables = table.executeQuery(sentencia);
+			
+			while (tables.next()) {
+				System.out.println("los apellidos almacenados en la tabla alumne son los que siguen: ");
+
+				System.out.println(tables.getString(1));
+		
+			}
+		}
+		
+		else if (sen1.equalsIgnoreCase("DNI")) {
+			
+			String sentencia = "SELECT DNI FROM ALUMNE";
+			
+			table = conect.createStatement();
+			
+			tables = table.executeQuery(sentencia);
+			
+			while (tables.next()) {
+				System.out.println("los dni almacenados en la tabla alumne son los que siguen: ");
+
+				System.out.println(tables.getString(1));
+		
+			}
+		}
+		
+		else if (sen1.equalsIgnoreCase("NACIMIENTO")) {
+			
+			String sentencia = "SELECT NACIMIENTO FROM ALUMNE";
+			
+			table = conect.createStatement();
+			
+			tables = table.executeQuery(sentencia);
+			
+			while (tables.next()) {
+				System.out.println("los anys de nacimiento almacenados en la tabla alumne son los que siguen: ");
+
+				System.out.println(tables.getString(1));
+				
+			}
+		}
+		
+		else if (sen1.equalsIgnoreCase("DIRECCION")) {
+			
+			String sentencia = "SELECT DIRECCION_POSTAL FROM ALUMNE";
+			
+			table = conect.createStatement();
+			
+			tables = table.executeQuery(sentencia);
+			
+			while (tables.next()) {
+				System.out.println("las direcciones almacenadas en la tabla alumne son los que siguen: ");
+
+				System.out.println(tables.getString(1));
+				
+			}
+		}
+		else if (sen1.equalsIgnoreCase("SEXO")) {
+			System.out.println("los géneros almacenados en la tabla alumne son los que siguen: ");
+
+			String sentencia = "SELECT SEXO FROM ALUMNE";
+			
+			table = conect.createStatement();
+			
+			tables = table.executeQuery(sentencia);
+			
+			while (tables.next()) {
+				
+				System.out.println(tables.getString(1));
+				
+			}
+		}
+		
+		else if (sen1.equalsIgnoreCase("CODIGO")) {
+			
+			String sentencia = "SELECT POSTAL_CODE FROM ALUMNE";
+			
+			table = conect.createStatement();
+			
+			tables = table.executeQuery(sentencia);
+			
+			while (tables.next()) {
+				System.out.println("los códigos postales almacenados en la tabla alumne son los que siguen: ");
+
+				System.out.println(tables.getString(1));
+			
+			}
+		} else {
+			System.out.println("PARÁMETRO INEXISTENTE EN LA TABLA");
+		}
+		conect.close();
+		
+	} catch (Exception e) {
+		
+		System.out.println("consulta no realizada");
+		
+	}
+}
 
 public void metodoVerificaElemento (String elem, String elem1) {
 	
@@ -430,6 +555,8 @@ public void metodoVerificaElemento (String elem, String elem1) {
 			System.out.println(tables.getString(7));
 			}
 	
+		conect.close();
+		
 	} catch (Exception e) {
 		//System.out.println("consulta no realizada");
 		}

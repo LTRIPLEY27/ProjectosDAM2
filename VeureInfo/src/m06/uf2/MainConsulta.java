@@ -97,18 +97,23 @@ public class MainConsulta {
 				
 			case 4:
 				String elem;
+				String sen1;
 				String elem1;
 				
 				
 				
 				System.out.println(" ingrese la columna a consultar");
-				elem = ask.next();
+				//elem = ask.next();
+				sen1 = ask.next();
+				//System.out.println(" ingrese el elemento a consultar");
+				//elem1 = ask.next();
 				
-				System.out.println(" ingrese el elemento a consultar");
-				elem1 = ask.next();
-				
-				tabla.metodoVerificaElemento(elem, elem1);
-				tabla.mostrarTabla();
+				tabla.metodoConsultaSobreunElemento(sen1);
+				//tabla.imprimeConsulta();
+				//System.out.println(tabla.imprimeConsulta());
+				//tabla.mostrarTabla();
+				//tabla.metodoVerificaElemento(elem, elem1);
+				//tabla.mostrarTabla();
 				break;
 				
 			case 5:
