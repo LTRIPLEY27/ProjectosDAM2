@@ -27,7 +27,8 @@ public class MySQLFirts {
 	private String sexo;
 	private String postalCode;
 	//private String poblacion;
-	private String comproba;
+	//private String comproba;
+	private boolean comproba = false;
 
 // constructor
 	public MySQLFirts (String name, String lastname, String ident, String agno, String direct, String sex, String postal) {
@@ -372,7 +373,7 @@ public void metodoBorrar (String elemento, String column) {
 				prova.executeUpdate();
 				System.out.println(" elemento eliminado");
 			}
-			else if (column.equalsIgnoreCase("postal")) {
+			else if (column.equalsIgnoreCase("codigo")) {
 				String sentencia = "DELETE FROM ALUMNE WHERE POSTAL_CODE = ?;";
 				prova = conect.prepareStatement(sentencia);
 				this.postalCode = elemento;
@@ -402,7 +403,7 @@ public void metodoBorrar (String elemento, String column) {
 	}
 
 
-// método consulta sore una columna específica de la tabla
+// método consulta sobre una columna específica de la tabla
 public void metodoConsultaSobreunElemento (String sen1) {
 	
 	try {
@@ -417,8 +418,9 @@ public void metodoConsultaSobreunElemento (String sen1) {
 			
 			tables = table.executeQuery(sentencia);
 			
+			System.out.println("los nombres almacenados en la tabla alumne son los que siguen: ");
+
 			while (tables.next()) {
-				System.out.println("los nombres almacenados en la tabla alumne son los que siguen: ");
 				System.out.println(tables.getString(1));
 				
 			}
@@ -432,8 +434,9 @@ public void metodoConsultaSobreunElemento (String sen1) {
 			
 			tables = table.executeQuery(sentencia);
 			
+			System.out.println("los apellidos almacenados en la tabla alumne son los que siguen: ");
+
 			while (tables.next()) {
-				System.out.println("los apellidos almacenados en la tabla alumne son los que siguen: ");
 
 				System.out.println(tables.getString(1));
 		
@@ -448,8 +451,9 @@ public void metodoConsultaSobreunElemento (String sen1) {
 			
 			tables = table.executeQuery(sentencia);
 			
+			System.out.println("los dni almacenados en la tabla alumne son los que siguen: ");
+
 			while (tables.next()) {
-				System.out.println("los dni almacenados en la tabla alumne son los que siguen: ");
 
 				System.out.println(tables.getString(1));
 		
@@ -464,8 +468,9 @@ public void metodoConsultaSobreunElemento (String sen1) {
 			
 			tables = table.executeQuery(sentencia);
 			
+			System.out.println("los anys de nacimiento almacenados en la tabla alumne son los que siguen: ");
+
 			while (tables.next()) {
-				System.out.println("los anys de nacimiento almacenados en la tabla alumne son los que siguen: ");
 
 				System.out.println(tables.getString(1));
 				
@@ -480,15 +485,15 @@ public void metodoConsultaSobreunElemento (String sen1) {
 			
 			tables = table.executeQuery(sentencia);
 			
+			System.out.println("las direcciones almacenadas en la tabla alumne son los que siguen: ");
+
 			while (tables.next()) {
-				System.out.println("las direcciones almacenadas en la tabla alumne son los que siguen: ");
 
 				System.out.println(tables.getString(1));
 				
 			}
 		}
 		else if (sen1.equalsIgnoreCase("SEXO")) {
-			System.out.println("los géneros almacenados en la tabla alumne son los que siguen: ");
 
 			String sentencia = "SELECT SEXO FROM ALUMNE";
 			
@@ -496,6 +501,8 @@ public void metodoConsultaSobreunElemento (String sen1) {
 			
 			tables = table.executeQuery(sentencia);
 			
+			System.out.println("los géneros almacenados en la tabla alumne son los que siguen: ");
+
 			while (tables.next()) {
 				
 				System.out.println(tables.getString(1));
@@ -511,9 +518,9 @@ public void metodoConsultaSobreunElemento (String sen1) {
 			
 			tables = table.executeQuery(sentencia);
 			
-			while (tables.next()) {
-				System.out.println("los códigos postales almacenados en la tabla alumne son los que siguen: ");
+			System.out.println("los códigos postales almacenados en la tabla alumne son los que siguen: ");
 
+			while (tables.next()) {
 				System.out.println(tables.getString(1));
 			
 			}
@@ -529,38 +536,6 @@ public void metodoConsultaSobreunElemento (String sen1) {
 	}
 }
 
-public void metodoVerificaElemento (String elem, String elem1) {
-	
-	try {
-		
-		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
-		
-		String sentencia = "SELECT NOMBRE, APELLIDO, DNI, NACIMIENTO, DIRECCION_POSTAL, SEXO, POSTAL_CODE  FROM ALUMNE WHERE ? = ?";
-		
-		prova = conect.prepareStatement(sentencia);
-		
-		prova.setString(1, elem);
-		prova.setString(2, elem1);
-		
-		tables = prova.executeQuery();  // EJECUTA LA CONSULTA PREPARADA EN EL PREPARESTATEMENT
-		
-		while (tables.next()) {  //  
-			///////////////////////////////////////////////////7
-			System.out.println(tables.getString(1));
-			System.out.println(tables.getString(2));
-			System.out.println(tables.getString(3));
-			System.out.println(tables.getString(4));
-			System.out.println(tables.getString(5));
-			System.out.println(tables.getString(6));
-			System.out.println(tables.getString(7));
-			}
-	
-		conect.close();
-		
-	} catch (Exception e) {
-		//System.out.println("consulta no realizada");
-		}
-	}
 
 // método de insercion de tabla poblacion
 	public void crearPoblacion(String code, String pobl) {
@@ -659,77 +634,91 @@ public void metodoVerificaElemento (String elem, String elem1) {
 		}
 	
 	
-
+	// método consulta columna de poblacion
 	
-	// método consulta de la poblacion
-	public void consultaPoblacion () {
+	public void metodoConsultaPoblacion (String x) {
 		
 		try {
 			
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
-
-			String sentencia = "SELECT A.NOM, A.POSTAL_DIRECTION FROM alumne A JOIN poblacion P ON (A.POSTAL_CODE = P.POSTAL_CODE) ";
 			
-			prova = conect.prepareStatement(sentencia);
-			
-			// prova
-			
-			tables = prova.executeQuery();
-			
-			while (tables.next()) {
-				System.out.println(tables.getString(1));
-				System.out.println(tables.getString(2));
+			if ( x.equalsIgnoreCase("POBLACION")) {
+				String sentencia = "SELECT POBLACION FROM POBLACION";
+				
+				table = conect.createStatement();
+				
+				tables = table.executeQuery(sentencia);
+				
+				while (tables.next()) {
+					System.out.println(tables.getString(1));
+				}
+			} else if (x.equalsIgnoreCase("CODIGO")){
+				
+				String sentencia = "SELECT POSTAL_CODE FROM POBLACION";
+				
+				table = conect.createStatement();
+				
+				tables = table.executeQuery(sentencia);
+				
+				while (tables.next()) {
+					System.out.println(tables.getString(1));
+				}
+			} else {
+				
+				System.out.println("valores no existentes en la tabla, verifique e intente nuevamente");
+				
 			}
+				conect.close();
 			
-			conect.close();
 			
 		} catch (Exception e) {
-			System.out.println(" no se puede consultar la tabla");
+			System.out.println("no ha sido posible");
 		}
 	}
 	
-	
 	// método para eliminar a la poblacion
 	
-	public void eliminaPoblacion (String eli) {
+	public void eliminaPoblacion (String eli, boolean resp) {
 		
 		try {
 			
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 			
-			Scanner ask = new Scanner (System.in);
+			//String sentencia = " DELETE FROM POBLACION WHERE POSTAL_CODE = ?";
 			
-			String respuesta;
+			//prova = conect.prepareStatement(sentencia);
 			
-			String sentencia = " DELETE FROM POBLACION WHERE POSTAL_CODE = ?";
-			
-			prova = conect.prepareStatement(sentencia);
-			
-			//if (eli.compareTo(this.comproba))) {
+			if ((this.comproba == true) && (resp == true)) {
 				
-				System.out.println(" el código a eliminar lo dispone un alumno, si lo elimina, eliminará al alumno, desea continuar, marque 'y' para (sí) o 'n' para no ?");
-				
-				respuesta = ask.next();
-				
-				if (respuesta.equalsIgnoreCase("y")) {
+				//if (respuesta.equalsIgnoreCase("y")) {
+					String sentencia = " DELETE FROM POBLACION WHERE POSTAL_CODE = ?";
+
+					prova = conect.prepareStatement(sentencia);
 					
 					prova.setString(1, eli);
 					
 					prova.executeUpdate();
 					
 					System.out.println("alumno eliminado");
-				//}
-			//	else {
-					System.out.println("no eliminado");
-				}
-			
-			//} else {
+					
+			} else if (this.comproba == false)  {
+				String sentencia = " DELETE FROM POBLACION WHERE POSTAL_CODE = ?";
+
+				prova = conect.prepareStatement(sentencia);
 				
-				System.out.println("REHAGA LA CONSULTA");
-			//}
+				prova.setString(1, eli);
+				
+				prova.executeUpdate();
+				
+				System.out.println("alumno NO eliminado");
+			} else {
+				System.out.println("IMPOSIBLE ");
+			}
 			
+		    conect.close();
+		     
 			
-		} catch (Exception e) {
+			} catch (Exception e) {
 			
 			System.out.println("no se ha podido eliminar");
 		}
@@ -738,28 +727,33 @@ public void metodoVerificaElemento (String elem, String elem1) {
 	public void verificaCodigo (String eli) {
 		
 		try {
-		conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 		
-		String sentencia = " SELECT A.POSTAL_CODE FROM ALUMNE A JOIN POBLACION P ON (A.POSTAL_CODE = P.POSTAL_CODE)";
+			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 		
-		prova = conect.prepareStatement(sentencia);
+			String sentencia = " SELECT A.POSTAL_CODE FROM ALUMNE A JOIN POBLACION P ON (A.POSTAL_CODE = P.POSTAL_CODE)";
 		
-		tables = prova.executeQuery();
+			table = conect.createStatement();
+			//prova = conect.prepareStatement(sentencia);
+			tables = table.executeQuery(sentencia);
 		
-		while (tables.next()) {
+			//tables = prova.executeQuery();
 			
-			System.out.println(tables.getString(1));
+			while (tables.next()) {
+			
+				System.out.println(tables.getString(1));
 
-			this.comproba = tables.getString(1);
+				this.comproba = true;
 			}
 		
+			conect.close();
+			
 		} catch (Exception e) {
 			
 		}
 
 	}
 
-	public String getVerificaCodigo () {
+	public boolean getVerificaCodigo () {
 		return this.comproba;
 	}
 	

@@ -23,13 +23,13 @@ public class MainConsulta {
 		
 		System.out.println("ingrese la opcion de su preferencia: " + '\n' + 
 				"desea insertar alumno (1)" + '\n' + "desea modificar alumno (2)" + '\n' +
-				"desea eliminar alumno  (3)" +  '\n' + "realizar alguna consulta sobre un elemento (4)" + '\n' 
+				"desea eliminar alumno  (3)" +  '\n' + "realizar alguna consulta sobre la tabla ALUMNES (4)" + '\n' 
 				+ "crear tabla poblacion (5)" + '\n'  + "modificar poblacion (6)" + '\n' + "eliminar poblacion (7)" + '\n' 
-				+ "salir (8)");
+				+ "consulta sobre la tabla POBLACION (8)" + '\n' + "salir (9)");
 		
 		opcion = ask.nextInt();
 		
-		while (opcion < 8) {
+		while (opcion < 9) {
 			switch (opcion) {
 			
 			case 1:
@@ -96,24 +96,20 @@ public class MainConsulta {
 				break;
 				
 			case 4:
-				String elem;
-				String sen1;
-				String elem1;
-				
-				
-				
-				System.out.println(" ingrese la columna a consultar");
-				//elem = ask.next();
-				sen1 = ask.next();
-				//System.out.println(" ingrese el elemento a consultar");
-				//elem1 = ask.next();
-				
-				tabla.metodoConsultaSobreunElemento(sen1);
-				//tabla.imprimeConsulta();
-				//System.out.println(tabla.imprimeConsulta());
-				//tabla.mostrarTabla();
-				//tabla.metodoVerificaElemento(elem, elem1);
-				//tabla.mostrarTabla();
+				char response;
+				System.out.println("desea realizar una consulta sobre una columna específica, marque (Y) para sí, o (N) para consultar la tabla al completo");
+					response = ask.next().charAt(0);
+					if (response == 'Y' || response == 'y') {
+						String sen1;			
+						
+						System.out.println(" ingrese la columna a consultar");
+						sen1 = ask.next();
+						
+						tabla.metodoConsultaSobreunElemento(sen1);
+					} else {
+						tabla.mostrarTabla();
+					}
+			
 				break;
 				
 			case 5:
@@ -126,7 +122,7 @@ public class MainConsulta {
 				
 				tabla.crearPoblacion(code, pobl);
 				
-				tabla.consultaPoblacion();
+				//tabla.consultaPoblacion();
 				tabla.mostrarPoblacion();
 				
 				break;
@@ -152,53 +148,48 @@ public class MainConsulta {
 				break;
 			case 7:
 				String eli;
+				String res;
+				boolean resp = false;
 				System.out.println(" ingrese el codigo de la poblacion que desea eliminar");
 				eli = ask.next();
 				
-				tabla.eliminaPoblacion(eli);
+				if (tabla.getVerificaCodigo() == true) {
+					System.out.println(" el código a eliminar lo dispone un alumno, si lo elimina, eliminará al alumno, desea continuar, marque 'y' para (sí) o 'n' para no ?");
+					res = ask.next();
+					resp = true;
+				} else {
+					System.out.println("verifique bien la consulta para no borrar alumnos de forma indeseada");
+				}
 				
-				tabla.mostrarPoblacion();
+				tabla.eliminaPoblacion(eli, resp);
 				
-				tabla.verificaCodigo(eli);
-				System.out.println(tabla.getVerificaCodigo());
+				//tabla.mostrarPoblacion();
+				
+				//tabla.verificaCodigo(eli);
+				//System.out.println(tabla.getVerificaCodigo());
 				//tabla.verificaCodigo(eli);
 				
 				break;
 				
+			case 8:
+				char a;
+				System.out.println("Para realizar una consulta sobre una columna, marque (Y) o sobre toda la tabla cualquier tecla");
+				a = ask.next().charAt(0);
+					if (a == 'Y' || a == 'y') {
+						String x;
+						System.out.println("indique el nombre de la columna a consultar");
+						x = ask.next();
+						tabla.metodoConsultaPoblacion(x);
+					} else {
+						tabla.mostrarPoblacion();
+					}
+				break;
 			default :
 				System.out.println(" OPCION NO VALIDA, INTENTE NUEVAMENTE");
 			}
 			
 		}
-		/*
-		 * 
-		System.out.println(" ingrese nombre");
-		name = ask.next();
-		
-		System.out.println(" ingrese DNI");
-		ident = ask.next();
-		
-		System.out.println(" ingrese any de nacimiento");
-		agno = ask.nextInt();
-		
-		System.out.println(" ingrese direccion postal");
-		direct = ask.next();
-		
-		System.out.println(" ingrese sexo");
-		sex = ask.next();
-		
-		System.out.println(" ingrese código postal");
-		postal = ask.nextInt();
-		
-		System.out.println(" ingrese poblacion");
-		pobla = ask.next();
 
-		
-		MySQLFirts nueva = new MySQLFirts (name , ident, agno, direct, sex, postal, pobla);
-	
-		//nueva.metodoInsertar();
-		
-		*/
 		
 	}
 }
