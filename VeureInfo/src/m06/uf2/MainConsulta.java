@@ -3,6 +3,12 @@ package m06.uf2;
 import java.util.Scanner;
 
 public class MainConsulta {
+	
+	/*
+	 * Alumne: María Isabel Calzadilla
+	 * Date: 29-12-2020
+	 * Activity: Actividad 1 UF2 M06 
+	 */
 
 	public static void main(String[] args) {
 	
