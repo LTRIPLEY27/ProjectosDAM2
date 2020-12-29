@@ -631,7 +631,7 @@ public void metodoConsultaSobreunElemento (String sen1) {
 			System.out.println("indique bien su elección para proceder pues debe de existir errores en la misma");
 		}
 			} catch (Exception e) {
-				System.out.println("no realizada");
+				System.out.println("no realizada ya que el parámetro sobre el que intenta trabajar es clave referencial y no se puede modificar");
 			}
 
 		}
