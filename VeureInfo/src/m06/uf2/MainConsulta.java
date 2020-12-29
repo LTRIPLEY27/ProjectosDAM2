@@ -13,13 +13,14 @@ public class MainConsulta {
 		boolean respuesta = false;
 		
 		int opcion;
+		boolean inicio = false;
 		
 		MySQLFirts tabla = new MySQLFirts (null, null, null, null, null, null, null);
 		
 		System.out.println("la tabla sobre la que se trabaja es la siguiente");
 		tabla.mostrarTabla();
 		
-		
+		while (inicio == false) {
 		
 		System.out.println("ingrese la opcion de su preferencia: " + '\n' + 
 				"desea insertar alumno (1)" + '\n' + "desea modificar alumno (2)" + '\n' +
@@ -29,7 +30,6 @@ public class MainConsulta {
 		
 		opcion = ask.nextInt();
 		
-		while (opcion < 9) {
 			switch (opcion) {
 			
 			case 1:
@@ -148,15 +148,34 @@ public class MainConsulta {
 				break;
 			case 7:
 				String eli;
-				String res;
+				char res;
 				boolean resp = false;
 				System.out.println(" ingrese el codigo de la poblacion que desea eliminar");
 				eli = ask.next();
 				
-				if (tabla.getVerificaCodigo() == true) {
-					System.out.println(" el código a eliminar lo dispone un alumno, si lo elimina, eliminará al alumno, desea continuar, marque 'y' para (sí) o 'n' para no ?");
-					res = ask.next();
-					resp = true;
+			    tabla.verificaCodigo(eli);
+			    tabla.getContador();
+				System.out.println(tabla.getVerificaCodigo());
+				//tabla.CodigoVerificado(eli);
+				//System.out.println(tabla.getCodigoVerificado());
+				
+				if (tabla.getCodigoVerificado() == true) {
+					System.out.println(" el código a eliminar lo dispone uno o más alumnos, si lo elimina, eliminará al alumno, desea continuar, marque 'y' para (sí) o 'n' para no ?");
+					res = ask.next().charAt(0);
+					if (res == 'Y' || res == 'y') {
+						resp = true;
+					} else {
+						resp = false;
+					}
+				
+				} else if (tabla.getCodigoVerificado() == false && tabla.getContador() < 1 )  {
+					System.out.println("el código a eliminar la poblacion?");
+					res = ask.next().charAt(0);
+					if (res == 'Y' || res == 'y') {
+						resp = true;
+					} else {
+						resp = false;
+					}
 				} else {
 					System.out.println("verifique bien la consulta para no borrar alumnos de forma indeseada");
 				}
@@ -184,6 +203,11 @@ public class MainConsulta {
 						tabla.mostrarPoblacion();
 					}
 				break;
+				
+			case 9:
+				inicio = true;
+				break;
+				
 			default :
 				System.out.println(" OPCION NO VALIDA, INTENTE NUEVAMENTE");
 			}

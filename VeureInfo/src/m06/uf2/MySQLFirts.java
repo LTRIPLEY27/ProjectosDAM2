@@ -27,8 +27,9 @@ public class MySQLFirts {
 	private String sexo;
 	private String postalCode;
 	//private String poblacion;
-	//private String comproba;
-	private boolean comproba = false;
+	private String comprob;
+	private boolean comproba;
+	private int contador = 0;
 
 // constructor
 	public MySQLFirts (String name, String lastname, String ident, String agno, String direct, String sex, String postal) {
@@ -723,28 +724,34 @@ public void metodoConsultaSobreunElemento (String sen1) {
 			System.out.println("no se ha podido eliminar");
 		}
 	}
-	
+								
 	public void verificaCodigo (String eli) {
 		
 		try {
-		
+			
 			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/alumnes", "alumne", "alumne");
 		
 			String sentencia = " SELECT A.POSTAL_CODE FROM ALUMNE A JOIN POBLACION P ON (A.POSTAL_CODE = P.POSTAL_CODE)";
 		
 			table = conect.createStatement();
-			//prova = conect.prepareStatement(sentencia);
-			tables = table.executeQuery(sentencia);
 		
-			//tables = prova.executeQuery();
+			tables = table.executeQuery(sentencia);
 			
 			while (tables.next()) {
 			
+				this.contador ++;
+				
 				System.out.println(tables.getString(1));
-
-				this.comproba = true;
+				
+				//if (cont != 0) {
+				this.comprob = tables.getString(1);
+				if (this.comprob.equalsIgnoreCase(eli) && this.contador != 0) {
+					this.comproba = true;
+				} else  {
+					this.comproba = false;
+				//}
+				}
 			}
-		
 			conect.close();
 			
 		} catch (Exception e) {
@@ -752,9 +759,17 @@ public void metodoConsultaSobreunElemento (String sen1) {
 		}
 
 	}
+	
+	public int getContador () {
+		return this.contador;
+	}
+	public String getVerificaCodigo () {
+		return this.comprob;
+	}
 
-	public boolean getVerificaCodigo () {
+	public boolean getCodigoVerificado () {
 		return this.comproba;
+		
 	}
 	
 }	
