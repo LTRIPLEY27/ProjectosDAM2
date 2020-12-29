@@ -10,18 +10,17 @@ public class MainConsulta {
 		
 		String name, lastname, ident, agno,  direct, sex, postal, pobla;
 		
-		boolean respuesta = false;
-		
 		int opcion;
 		boolean inicio = false;
 		
+		// creación del objeto tipo MySQLFirts con los valores en NULL para ingresar la creación de un alumno
 		MySQLFirts tabla = new MySQLFirts (null, null, null, null, null, null, null);
-		
-		System.out.println("la tabla sobre la que se trabaja es la siguiente");
-		tabla.mostrarTabla();
 		
 		while (inicio == false) {
 		
+			System.out.println("la tabla sobre la que se trabaja es la siguiente");
+			tabla.mostrarTabla();
+			
 		System.out.println("ingrese la opcion de su preferencia: " + '\n' + 
 				"desea insertar alumno (1)" + '\n' + "desea modificar alumno (2)" + '\n' +
 				"desea eliminar alumno  (3)" +  '\n' + "realizar alguna consulta sobre la tabla ALUMNES (4)" + '\n' 
@@ -153,11 +152,9 @@ public class MainConsulta {
 				System.out.println(" ingrese el codigo de la poblacion que desea eliminar");
 				eli = ask.next();
 				
-			    tabla.verificaCodigo(eli);
-			    tabla.getContador();
-				System.out.println(tabla.getVerificaCodigo());
-				//tabla.CodigoVerificado(eli);
-				//System.out.println(tabla.getCodigoVerificado());
+			   // tabla.verificaCodigo(eli);
+			    //tabla.getContador();
+				//System.out.println(tabla.getVerificaCodigo());
 				
 				if (tabla.getCodigoVerificado() == true) {
 					System.out.println(" el código a eliminar lo dispone uno o más alumnos, si lo elimina, eliminará al alumno, desea continuar, marque 'y' para (sí) o 'n' para no ?");
@@ -169,12 +166,15 @@ public class MainConsulta {
 					}
 				
 				} else if (tabla.getCodigoVerificado() == false && tabla.getContador() < 1 )  {
-					System.out.println("el código a eliminar la poblacion?");
+					System.out.println("desea eliminar la poblacion?");
 					res = ask.next().charAt(0);
 					if (res == 'Y' || res == 'y') {
 						resp = true;
+						System.out.println(" poblacion eliminada satisfactoriamente");
 					} else {
 						resp = false;
+						System.out.println(" poblacion no eliminada");
+
 					}
 				} else {
 					System.out.println("verifique bien la consulta para no borrar alumnos de forma indeseada");
@@ -184,9 +184,6 @@ public class MainConsulta {
 				
 				//tabla.mostrarPoblacion();
 				
-				//tabla.verificaCodigo(eli);
-				//System.out.println(tabla.getVerificaCodigo());
-				//tabla.verificaCodigo(eli);
 				
 				break;
 				

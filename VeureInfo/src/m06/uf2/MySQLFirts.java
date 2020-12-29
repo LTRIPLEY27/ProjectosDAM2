@@ -398,7 +398,7 @@ public void metodoBorrar (String elemento, String column) {
 	
 	} catch (Exception e) {
 	
-		System.out.println(" no se ha podido eliminar el elmento");
+		System.out.println(" no se ha podido eliminar el elemento ya que el código postal es clave");
 		
 		}
 	}
@@ -613,7 +613,7 @@ public void metodoConsultaSobreunElemento (String sen1) {
 				System.out.println("realizada");
 			
 				conect.close();
-		} else {
+		} else if (poblatName.equalsIgnoreCase("codigo")) {
 				String sentencia = " UPDATE POBLACION SET POSTAL_CODE = ? WHERE POBLACION = ? ";
 			
 				prova = conect.prepareStatement(sentencia);
@@ -627,6 +627,8 @@ public void metodoConsultaSobreunElemento (String sen1) {
 				System.out.println("realizada");
 		
 				conect.close();
+		}  else {
+			System.out.println("indique bien su elección para proceder pues debe de existir errores en la misma");
 		}
 			} catch (Exception e) {
 				System.out.println("no realizada");
