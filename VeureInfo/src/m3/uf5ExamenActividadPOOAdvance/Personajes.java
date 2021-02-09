@@ -5,20 +5,34 @@ public abstract class Personajes {   // definicion de la clase abstracta con el 
 	protected String nom;  // declaracion de los atributos de forma "protected2 para adecuar el acceso de las subclases
 	protected int edad;
 	protected int forca;
-	protected int PuntosdeVida;
-	protected String equip;
+	protected int puntosdeVida;
+	protected boolean equip;
 	
 	
-	public Personajes (String n, int e, int f, int p, String eq) {
+	public Personajes (String name, int age, int force, int points, boolean equipment) {
 		
-		this.nom = n;
-		this.edad = e;
-		this.forca = p;
-		this.equip = eq;
+		this.nom = name;
+		this.edad = age;
+		this.forca = force;
+		this.puntosdeVida = points;
+		this.equip = equipment;
 		
 	}
 
-    public abstract int atacar();  // los métodos abstractos no deben de llevar llaves (cuerpo)
+    public abstract void Atacar();  // los métodos abstractos no deben de llevar llaves (cuerpo)
+    
+    public abstract void Equipar();
+    
+    public abstract void Beber();
+    
+    public abstract void MostrarEquipaje();
+
+	@Override
+	public String toString() {
+		return "Personajes [nom=" + nom + ", edad=" + edad + ", forca=" + forca + ", PuntosdeVida=" + puntosdeVida
+				+ ", equip=" + equip + "]";
+	}
+    
     
     
     
