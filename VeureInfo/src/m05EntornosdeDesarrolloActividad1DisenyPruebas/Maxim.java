@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Maxim {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {  // a las clases con Excepciones es imperativo desde java encrustarla en un bucle trz para capturar cualquier eventualidad surgida
+		
+		
 		BufferedReader entrada = new BufferedReader (new InputStreamReader(System.in));
 		
 		int x,y,z,max;
@@ -23,5 +25,7 @@ public class Maxim {
 			else
 				max = y;
 		System.out.println ("El máxim és "+ max);
+		
+		
 	}
 }
