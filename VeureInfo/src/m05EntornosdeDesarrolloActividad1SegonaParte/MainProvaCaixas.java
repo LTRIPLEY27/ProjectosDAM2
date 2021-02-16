@@ -1,5 +1,7 @@
 package m05EntornosdeDesarrolloActividad1SegonaParte;
 
+import java.util.Scanner;
+
 public class MainProvaCaixas {
 
 	/*
@@ -25,6 +27,25 @@ que cubren una sola clase no válida.
 	public static void main(String[] args) {
 		
 
+		Scanner ask = new Scanner(System.in);
+		String name;
+		int codeDNI;
+		int opcion;
+		
+		while (ask.hasNext()) {
+			System.out.println("indique el apellido del cliente");
+			name = ask.next();
+			
+			System.out.println("indique el DNI del cliente");
+			codeDNI = ask.nextInt();
+		}
+		
+		
+		
+		
+		//ProvaCaixas cliente = new ProvaCaixas ();
+		
+		
 	}
 
 }

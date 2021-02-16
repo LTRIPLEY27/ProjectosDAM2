@@ -10,19 +10,22 @@ public class ProvaCaixas {
 	private int codigoCuenta;
 	private char clavePersonal;  // comprobaremos luego lo de String
 	private String orden;
+	private int opcion;
 	
-	public ProvaCaixas(int codeDni, String name, int codeBank, int codePlace, int codeCount, char personalKey, int order) {  // constructor
+	public ProvaCaixas(int codeDni, String name, int codeBank, int codePlace, int codeCount, char personalKey, String order) {  // constructor
 		
 		this.dni = codeDni;
 		this.nom = name;
-		this.codigoBanco = codeBank;
+		/*this.codigoBanco = codeBank;
 		this.codigoSucursal = codePlace;
 		this.codigoCuenta = codeCount;
 		this.clavePersonal = personalKey;
-		this.orden = order;
+		this.orden = order;*/
 	}
 	
-	
+	//public void mostrarMenu() {
+		
+	//}
 	
 	
 	

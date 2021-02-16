@@ -3,6 +3,9 @@
 	<name>ProjectosDAM2</name>
 	<comment></comment>
 	<projects>
+		<project>encapsulamiento</project>
+		<project>PracticesRandom</project>
+		<project>VeureInfo</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>
