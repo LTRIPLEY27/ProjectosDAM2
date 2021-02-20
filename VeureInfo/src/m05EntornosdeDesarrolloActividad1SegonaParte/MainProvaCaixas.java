@@ -29,13 +29,16 @@ que cubren una sola clase no válida.
 
 		Scanner ask = new Scanner(System.in);
 		String name;
+		boolean resposta;
 		int codeDNI;
 		int opcion;
 		
-		while (ask.hasNext()) {
+		System.out.println("desea relizar alguna operacion?");
+		resposta = ask.nextBoolean();
+		
+		while (resposta) {
 			System.out.println("indique el apellido del cliente");
 			name = ask.next();
-			
 			System.out.println("indique el DNI del cliente");
 			codeDNI = ask.nextInt();
 		}
