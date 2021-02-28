@@ -119,7 +119,58 @@ class JavaProjectTest {
 		cuenta.setRetiroMaxEnCuenta(7000, 6000.01);
 		assertEquals(7000, cuenta.getRetiroMaxEnCuenta());
 	}
+	
+	@Test // transferenca entre cuentas y nueva cuenta secundaria
+	void testTransferenciaEntreCuentas() {
+		Cuenta cuenta = new Cuenta();
+		Cuenta cuenta2 = new Cuenta();
+		cuenta.setTransfiereCuentas(500, 100, 50);
+		cuenta2.setTransfiereCuentas(500, 100, 50);
+		assertEquals(400, cuenta.getSaldoCuenta1());
+		assertEquals(150, cuenta2.getSaldoCuenta2());
+	}
+	
+	@Test   // transferencias condicionadas al saldo, negativo o no y disponibilidad del mismo
+	void testTransferenciaSaldosNegativos() {
+		Cuenta cuenta = new Cuenta();
+		Cuenta cuenta2 = new Cuenta();
+		cuenta.setSaldoNegativo(500, -100, 50);
+		cuenta2.setSaldoNegativo(500, -100, 50);
+		assertEquals(500, cuenta.getSaldoNegativo());
+		assertEquals(50, cuenta2.getSaldoNegativoCuenta2());
+	}
+	
+	@Test // transferencia limite diario
+	void  testTransferenciaLimites() {
+		Cuenta cuenta = new Cuenta();
+		Cuenta cuenta2 = new Cuenta();
+		cuenta.setTransferenciaLimite(3500, 3000, 50);
+		assertEquals(500, cuenta.getTransferenciaLimite());
+		cuenta2.setTransferenciaLimite(3500, 3000, 50);
+		assertEquals(3050, cuenta2.getTransferenciaLimiteCuenta2());
+	}
+	
+	@Test
+	void testLimiteMaximoTransferenciasinDecimales() {
+		Cuenta cuenta = new Cuenta();
+		Cuenta cuenta2 = new Cuenta();
+		cuenta.setTransferenciaLimite(3500, 3000.01, 50);
+		assertEquals(3500, cuenta.getTransferenciaLimite());
+		cuenta2.setTransferenciaLimite(500, 3000.01, 50);
+		assertEquals(50, cuenta2.getTransferenciaLimiteCuenta2());
+	}
+	
+	@Test
+	void testLimiteMaximoVariasTransferencias() {
+		Cuenta cuenta = new Cuenta();
+		Cuenta cuenta2 = new Cuenta();
+		cuenta.setTransferenciasVariasLimiteDiario(3500, 2000, 50, 1200);
+		assertEquals(1500, cuenta.getTransferenciasVariasLimite());
+		cuenta2.setTransferenciasVariasLimiteDiario(3500, 2000, 50, 1200);
+		assertEquals(2050, cuenta2.getTransferenciasVariasCuenta2());
+	}
 }
+
 
 	
 	
