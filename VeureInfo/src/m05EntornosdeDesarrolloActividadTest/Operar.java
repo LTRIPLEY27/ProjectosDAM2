@@ -1,5 +1,7 @@
-package m05EntornosdeDesarrolloActividad2;
+package m05EntornosdeDesarrolloActividadTest;
 
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class Operar {
 
@@ -11,7 +13,7 @@ public class Operar {
 	}
 	
 	public double getSaldoInicial() {  // return del saldo en cero
-		return this.amount;
+		return this.saldo;
 	}
 	
 	
@@ -60,24 +62,43 @@ public class Operar {
 	
 	public boolean setTransfiereEntreCuentas(double x, double y, double z) {
 		
+		int count = 0;
+		
+		
 		if(y > x) {
 			return true;
 		} if((y < 0) || (x < 0) || (z < 0)) {
+			count++;
 			return true;
 		} if((Math.round(y * 100) != y * 100) || (Math.round(y * 100) != y * 100) || ((Math.round(z * 100) != z * 100))) {	
 			return true;
+		} if(count > 0) {
+			z += z;
+			return true;
 		} if(z > 3000) {
 			return true;
-		}
+		} 
 		
 		return false;
 	}
 	
 	
 	public void setActualizaTransferenciaSaldo(double x, double y, double z) {
+		
 		if(setTransfiereEntreCuentas(x, y, z) == false) {
 			this.saldo = y + z;
 		}
 	}
 	
+	
+	public void setPrueba(Operar cuenta, double z) {	
+	
+		cuenta.setActualizaSaldoRetirada(z);;		 // llamado al metodo para que reconozca el saldo de la cuenta 1
+	}
+	
+	public double getPreba1() {
+		return this.saldo;
+	}
+	
 }
+
