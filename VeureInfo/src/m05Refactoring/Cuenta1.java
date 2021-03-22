@@ -1,23 +1,20 @@
-package m05EntornosdeDesarrolloActividadTest;
+package m05Refactoring;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import m05EntornosdeDesarrolloActividadTest.Operar;
 
-public class Operar {
-
-	private double saldo;
-	//private double y;
+public class Cuenta1 {
+	private int  amount;  // condicional dispuesto en el enunciado
 	
-	public Operar() {
-		this.saldo = 0.0;  // saldo inicial 
+	public Cuenta1() {
+		this.amount = 0;  // saldo inicial 
 	}
 	
-	public double getSaldoInicial() {  // return del saldo en cero
-		return this.saldo;
+	public int getSaldoInicial() {  // return del saldo en cero
+		return this.amount;
 	}
 	
 	
-	public boolean getSaldoTester(double x) {  // ********metodo anidado a verificar en el saldo a actualizar *********
+	public boolean getSaldoTester(int x) {  // ********metodo anidado a verificar en el saldo a actualizar *********
 		if(x < 0) {
 			return true;       // boolean que verifica que la cantidad cumpla 3 condiciones: 1) sea numero positivo(x>0). 2) sea menor o igual a 6000. 3) sea un numero de dos decimales 
 		} if(x > 6000) {
@@ -28,20 +25,20 @@ public class Operar {
 		return false;  // condicional: no es menor a 0, no es mayor a 6000 y no tiene mas de 2 decimales
 	}
 	
-	public void actualizaSaldo(double x) {   // metodo anidado del getSaldoTester, reduce el codigo a validar las 3 condiciones esenciales
+	public void actualizaSaldo(int x) {   // metodo anidado del getSaldoTester, reduce el codigo a validar las 3 condiciones esenciales
 		if(getSaldoTester(x) != true) {
-			this.saldo += x;
+			this.amount += x;
 		}
 	}
 	
-	public double getActualizaSaldo() {
-		return this.saldo;
+	public int getActualizaSaldo() {
+		return this.amount;
 	}
 	
 	//////////////////////// RETIRO ////////////////////
 	
-	public boolean setSaldoTesterRetiro(double x) {
-		if(x > this.saldo) {       // x es menor al saldo
+	public boolean setSaldoTesterRetiro(int x) {
+		if(x > this.amount) {       // x es menor al saldo
 			return true;
 		} if(x < 0) {
 			return true;   // x es mayor a cero o numero positivo
@@ -54,16 +51,13 @@ public class Operar {
 		return false;
 	}
 	
-	public void setActualizaSaldoRetirada(double x) {
+	public void setActualizaSaldoRetirada(int x) {
 		if(setSaldoTesterRetiro(x) == false) {
-			this.saldo -= x;   // resta x a saldo
+			this.amount -= x;   // resta x a saldo
 		}
 	}
 	
-	public boolean setTransfiereEntreCuentas(double x, double y, double z) {
-		
-		//int count = 0;
-		
+	public boolean setTransfiereEntreCuentas(int x, int y, int z) {
 		
 		if(y > x) {
 			return true;
@@ -83,25 +77,25 @@ public class Operar {
 	}
 	
 	
-	public void setActualizaTransferenciaSaldo(double x, double y, double z) {
+	public void setActualizaTransferenciaSaldo(int x, int y, int z) {
 		
 		if(setTransfiereEntreCuentas(x, y, z) == false) {
-			this.saldo = y + z;
+			this.amount = y + z;
 		}
 	}
 	
 	
 	
-	public void setPrueba(Operar cuenta, double z) {	
+	public void setPrueba(Cuenta1 cuenta, int z) {	
 	
-		cuenta.setActualizaSaldoRetirada(z);;		 // llamado al metodo para que reconozca el saldo de la cuenta 1
+		cuenta.setActualizaSaldoRetirada(z);	 // llamado al metodo para que reconozca el saldo de la cuenta 1
 	}
 	
-	public double getPreba1() {
-		return this.saldo;
+	public int getPreba1() {
+		return this.amount;
 	}
 	
-	public boolean sumaCantidad(double z) {
+	public boolean sumaCantidad(int z) {
 		int count = 0;
 		
 		if(z < 3000) {
@@ -117,6 +111,4 @@ public class Operar {
 	return false;
 	
 	}
-	
 }
-
