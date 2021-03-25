@@ -173,5 +173,17 @@ class Cuenta1Test {
 		assertEquals(1850, cuenta2.getActualizaSaldo());
 	}
 	
-
+ /*
+	@Test
+	void tesVariasTransferencias() {
+		Cuenta1 cuenta = new Cuenta1();
+		Cuenta1 cuenta2 = new Cuenta1();
+		cuenta.actualizaSaldo(3500);
+		cuenta2.actualizaSaldo(50);
+		cuenta2.setActualizaTransferenciaSaldo(3500, 50, 2000);
+		assertEquals(2050, cuenta2.getActualizaSaldo());
+		cuenta2.setActualizaTransferenciaSaldo(3500, 50, 1200);
+		assertEquals(2050, cuenta2.retornaTransfer(cuenta2, 1200));
+		
+	}*/
 }
